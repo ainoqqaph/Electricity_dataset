@@ -46,10 +46,9 @@ def parse_weather_xml(folder_path='.'):
             
     return pd.DataFrame(weather_data).dropna()
 
-# --- 2. Parse Power Consumption CSV Files ---
 def parse_power_csv(folder_path='.'):
     all_regional = []
-    # Tech Hub Districts (Chinese)
+    
     target_districts = [
         '\u65b0\u5e02', '\u5b89\u5b9a', '\u65b0\u7af9\u5e02', 
         '\u5bf6\u5c71', '\u897f\u5c6f\u5340'
@@ -102,7 +101,7 @@ def parse_power_csv(folder_path='.'):
         return pd.concat(all_regional, ignore_index=True)
     return pd.DataFrame()
 
-# --- 3. Load Data to Azure SQL with Explicit Unicode Support ---
+
 def load_to_azure_sql(df_weather, df_power):
     server = 'noqqaph.database.windows.net'
     database = 'free-sql-db-0971966'
@@ -112,7 +111,7 @@ def load_to_azure_sql(df_weather, df_power):
     conn_str = f"mssql+pyodbc://{username}:{password}@{server}:1433/{database}?driver=ODBC+Driver+17+for+SQL+Server&Encrypt=yes&TrustServerCertificate=no&Connection+Timeout=30"
     engine = create_engine(conn_str)
     
-    # Define SQL Data Types to force NVARCHAR (Unicode) support
+    
     weather_dtypes = {
         'YearMonth': types.VARCHAR(6),
         'StationName': types.NVARCHAR(50),
