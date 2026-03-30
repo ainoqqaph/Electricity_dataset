@@ -1,0 +1,95 @@
+table vw_TechClimate_Analytics
+	lineageTag: e8a4e340-46b9-452e-b300-7d490938353c
+
+	column 年月
+		dataType: string
+		lineageTag: 97f4ddda-1641-4ba8-9aaa-0c6f045e63ae
+		summarizeBy: none
+		sourceColumn: 年月
+
+		annotation SummarizationSetBy = Automatic
+
+	column 產業地區
+		dataType: string
+		lineageTag: bb4a2be4-6028-45e4-b780-b8b74c0f6f1d
+		summarizeBy: none
+		sourceColumn: 產業地區
+
+		annotation SummarizationSetBy = Automatic
+
+	column '高壓售電量 (億度)'
+		dataType: double
+		lineageTag: e28ef730-1098-43de-9e11-72a5681807d8
+		summarizeBy: sum
+		sourceColumn: 高壓售電量 (億度)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 觀測站
+		dataType: string
+		lineageTag: 4f9a6ec4-32c5-4db1-9299-54f159e9fc5e
+		summarizeBy: none
+		sourceColumn: 觀測站
+
+		annotation SummarizationSetBy = Automatic
+
+	column '月平均氣溫 (°C)'
+		dataType: double
+		lineageTag: 1419fc97-309d-4ae9-8307-8d7fbb70141d
+		summarizeBy: sum
+		sourceColumn: 月平均氣溫 (°C)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '總日照時數 (小時)'
+		dataType: double
+		lineageTag: afc21f36-c056-431f-bdab-c3dc0cb623e2
+		summarizeBy: sum
+		sourceColumn: 總日照時數 (小時)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 氣溫月增減量
+		dataType: double
+		lineageTag: e66bebed-ce4e-4198-a759-bd8581a8a3c9
+		summarizeBy: sum
+		sourceColumn: 氣溫月增減量
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 用電月增減量
+		dataType: double
+		lineageTag: c40cf91b-50aa-4ae0-9372-67edd167f965
+		summarizeBy: sum
+		sourceColumn: 用電月增減量
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 年 = LEFT(vw_TechClimate_Analytics[年月], 4)
+		lineageTag: d58ed07f-75d5-4389-8603-bf5395900586
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition vw_TechClimate_Analytics = m
+		mode: import
+		source =
+				let
+				    來源 = Sql.Database("noqqaph.database.windows.net", "free-sql-db-0971966"),
+				    dbo_vw_TechClimate_Analytics = 來源{[Schema="dbo",Item="vw_TechClimate_Analytics"]}[Data],
+				    已重新命名資料行 = Table.RenameColumns(dbo_vw_TechClimate_Analytics,{{"District", "產業地區"}, {"YearMonth", "年月"}, {"StationName", "觀測站"}, {"PowerUsage_100M_kWh", "高壓售電量 (億度)"}, {"MeanTemp", "月平均氣溫 (°C)"}, {"SunshineHrs", "總日照時數 (小時)"}, {"Temp_Diff", "氣溫月增減量"}, {"Power_Diff", "用電月增減量"}})
+				in
+				    已重新命名資料行
+
+	annotation PBI_ResultType = Table
+

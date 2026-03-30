@@ -1,0 +1,77 @@
+table 量值表
+	lineageTag: 3cd06f10-d580-4c78-8766-cfec9137ad0d
+
+	measure 'AI 產業固定耗電量' =
+			
+			CALCULATE(
+			    AVERAGE(vw_TechClimate_Analytics[高壓售電量 (億度)]),
+			    FILTER(
+			        ALL(vw_TechClimate_Analytics),
+			        vw_TechClimate_Analytics[年] = MAX(vw_TechClimate_Analytics[年]) &&
+			        vw_TechClimate_Analytics[產業地區] = MAX(vw_TechClimate_Analytics[產業地區]) &&
+			        vw_TechClimate_Analytics[月平均氣溫 (°C)] < 20
+			    )
+			)
+		lineageTag: ac1520e5-744e-446e-84fe-2c7dcd1d5076
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 電力與氣溫變動規律 =
+			
+			DIVIDE(
+			    SUM(vw_TechClimate_Analytics[用電月增減量]),
+			    SUM(vw_TechClimate_Analytics[氣溫月增減量]),
+			    0
+			)
+		lineageTag: c7ca63f5-1caf-46cf-bbac-5db1694f04d6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'AI 佔總用電量的百分比' = DIVIDE([AI 產業固定耗電量], SUM(vw_TechClimate_Analytics[高壓售電量 (億度)]))
+		lineageTag: 3b217fbb-3adb-4594-ade3-a7d89daa96a9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 氣候變動下的耗電量 = SUM(vw_TechClimate_Analytics[高壓售電量 (億度)]) - [AI 產業固定耗電量]
+		lineageTag: 85449824-5f2b-4171-a586-f0ee2e9f5e50
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 固定生產耗電成長率 = ```
+			
+			VAR FirstYear = MIN('vw_TechClimate_Analytics'[年])
+			VAR LastYear = MAX('vw_TechClimate_Analytics'[年])
+			VAR District_Selected = SELECTEDVALUE('vw_TechClimate_Analytics'[產業地區])
+			
+			VAR Base_Start = 
+			    CALCULATE(
+			        [AI 產業固定耗電量], 
+			        'vw_TechClimate_Analytics'[年] = FirstYear,
+			        ALL('vw_TechClimate_Analytics'[年月])
+			    )
+			VAR Base_End = 
+			    CALCULATE(
+			        [AI 產業固定耗電量], 
+			        'vw_TechClimate_Analytics'[年] = LastYear,
+			        ALL('vw_TechClimate_Analytics'[年月])
+			    )
+			RETURN 
+			    Base_End - Base_Start
+			```
+		formatString: 0
+		lineageTag: 9651ae73-006e-40cc-9f6f-8c4300773e78
+
+	column column
+		lineageTag: d00dd61b-83f5-45f5-9c33-e8d40c4c31ba
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 量值表 = calculated
+		mode: import
+		source = ROW("column","量值存放" )
+
+	annotation PBI_Id = aff688d7d724480e8e207f1512c6308f
+

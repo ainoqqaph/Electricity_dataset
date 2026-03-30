@@ -1,0 +1,20 @@
+model Model
+	culture: zh-TW
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: zh-TW
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_QueryOrder = ["vw_TechClimate_Analytics","vw_TechClimate_Base"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table vw_TechClimate_Analytics
+ref table vw_TechClimate_Base
+ref table 量值表
+
+ref cultureInfo zh-TW
+

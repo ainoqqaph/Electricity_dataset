@@ -1,0 +1,69 @@
+table vw_TechClimate_Base
+	lineageTag: 4a9c3ce6-7477-4dbe-a736-ffa08b1369c0
+
+	column 年月
+		dataType: string
+		lineageTag: 13bb34a6-ccca-4f42-9ac5-a56ced82578d
+		summarizeBy: none
+		sourceColumn: 年月
+
+		annotation SummarizationSetBy = Automatic
+
+	column 產業地區
+		dataType: string
+		lineageTag: 8dc1f724-dace-4d60-8fbe-1eda713b6cc0
+		summarizeBy: none
+		sourceColumn: 產業地區
+
+		annotation SummarizationSetBy = Automatic
+
+	column '高壓售電量 (億度)'
+		dataType: double
+		lineageTag: 30993606-61ea-4c6b-a184-2ec001c73756
+		summarizeBy: sum
+		sourceColumn: 高壓售電量 (億度)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 觀測站
+		dataType: string
+		lineageTag: 8aa37246-ceb7-40ef-ac8c-fb3fe8cf1037
+		summarizeBy: none
+		sourceColumn: 觀測站
+
+		annotation SummarizationSetBy = Automatic
+
+	column '月平均氣溫 (°C)'
+		dataType: double
+		lineageTag: 7641e6d6-5b35-4916-9715-68718fa7dc27
+		summarizeBy: sum
+		sourceColumn: 月平均氣溫 (°C)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column '總日照時數 (小時)'
+		dataType: double
+		lineageTag: 788b72cb-fdb3-4b0f-8913-7caeeb20988b
+		summarizeBy: sum
+		sourceColumn: 總日照時數 (小時)
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition vw_TechClimate_Base = m
+		mode: import
+		source =
+				let
+				    來源 = Sql.Database("noqqaph.database.windows.net", "free-sql-db-0971966"),
+				    dbo_vw_TechClimate_Base = 來源{[Schema="dbo",Item="vw_TechClimate_Base"]}[Data],
+				    已重新命名資料行 = Table.RenameColumns(dbo_vw_TechClimate_Base,{{"SunshineHrs", "總日照時數 (小時)"}, {"MeanTemp", "月平均氣溫 (°C)"}, {"PowerUsage_100M_kWh", "高壓售電量 (億度)"}, {"StationName", "觀測站"}, {"District", "產業地區"}, {"YearMonth", "年月"}})
+				in
+				    已重新命名資料行
+
+	annotation PBI_ResultType = Table
+
