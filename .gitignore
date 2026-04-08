@@ -1,0 +1,17 @@
+# Claude Code
+.claude/
+
+# Environment
+.env
+
+# Power BI binary/cache
+*.pbix
+*.pbit
+
+POWERBI/Ele.Report/
+POWERBI/screenshots/
+
+# Data exclusions
+data/archive/
+data/*.png
+data/*.jpg
