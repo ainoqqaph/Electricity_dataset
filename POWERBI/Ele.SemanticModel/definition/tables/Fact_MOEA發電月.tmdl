@@ -1,0 +1,74 @@
+table Fact_MOEA發電月
+	lineageTag: fa020000-fa02-4000-8002-fa0200000002
+
+	column 西元年
+		dataType: int64
+		lineageTag: fa020001-fa02-4001-8002-fa0200000002
+		summarizeBy: sum
+		sourceColumn: 西元年
+
+		annotation SummarizationSetBy = Automatic
+
+	column 月
+		dataType: int64
+		lineageTag: fa020002-fa02-4002-8002-fa0200000002
+		summarizeBy: sum
+		sourceColumn: 月
+
+		annotation SummarizationSetBy = Automatic
+
+	column 發電方式
+		dataType: string
+		lineageTag: fa020003-fa02-4003-8002-fa0200000002
+		summarizeBy: none
+		sourceColumn: 發電方式
+
+		annotation SummarizationSetBy = Automatic
+
+	column 發電量
+		dataType: double
+		lineageTag: fa020004-fa02-4004-8002-fa0200000002
+		summarizeBy: sum
+		sourceColumn: 發電量
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fa020005-fa02-4005-8002-fa0200000002
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Fact_MOEA發電月 = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(
+				        File.Contents("C:\職訓課\Electricity_dataset\data\moea_power_generation.csv"),
+				        [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]
+				    ),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    TypeChanged = Table.TransformColumnTypes(Promoted, {
+				        {"西元年", Int64.Type}, {"月", Int64.Type},
+				        {"發電方式", type text}, {"發電量", type number}
+				    }),
+				    DateAdded = Table.AddColumn(TypeChanged, "Date",
+				        each #date([西元年], [月], 1), type date),
+				    Selected = Table.SelectColumns(DateAdded,
+				        {"西元年", "月", "發電方式", "發電量", "Date"})
+				in
+				    Selected
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_Id = fa020000fa0240008002fa0200000002
+
+	annotation PBI_NavigationStepName = Navigation
+

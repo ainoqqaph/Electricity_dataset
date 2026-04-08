@@ -1,0 +1,8 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.0.0/schema.json",
+  "name": "55e9e96205a3ae7ddf59",
+  "displayName": "電網韌性 - 2",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280
+}

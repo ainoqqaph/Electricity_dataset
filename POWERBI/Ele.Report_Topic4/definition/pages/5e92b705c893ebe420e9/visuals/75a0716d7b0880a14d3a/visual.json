@@ -1,0 +1,66 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "75a0716d7b0880a14d3a",
+  "position": {
+    "x": 600.7361963190184,
+    "y": 115.8282208588957,
+    "z": 13000,
+    "height": 155.09202453987731,
+    "width": 309.52965235173826,
+    "tabOrder": 13000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "中部的負載率最高（89%），但產值效率和用電效率都輸給南部。原因是產業結構差異",
+                    "textStyle": {
+                      "fontFamily": "Consolas, Courier New, monospace",
+                      "fontSize": "14px",
+                      "color": "#bbbebf"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "  中科的主要產業：光電 + 面板 + 老世代半導體"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "高負載率 + 低產值效率的矛盾：光電／面板廠是 24 小時連續製程（所以負載率高），但每度電創造的營收比做 AI 晶片的 3nm 廠低很多"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

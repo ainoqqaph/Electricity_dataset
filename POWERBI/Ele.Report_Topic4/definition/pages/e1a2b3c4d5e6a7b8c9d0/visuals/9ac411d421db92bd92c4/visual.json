@@ -1,0 +1,160 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "9ac411d421db92bd92c4",
+  "position": {
+    "x": 0,
+    "y": 206.06473594548552,
+    "z": 7000,
+    "height": 489.54003407155022,
+    "width": 741.396933560477,
+    "tabOrder": 7000
+  },
+  "visual": {
+    "visualType": "barChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_科學園區用電年"
+                    }
+                  },
+                  "Property": "園區別"
+                }
+              },
+              "queryRef": "Fact_科學園區用電年.園區別",
+              "nativeQueryRef": "園區別",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "量值表"
+                    }
+                  },
+                  "Property": "Proxy_再生能源_估算_千度"
+                }
+              },
+              "queryRef": "量值表.Proxy_再生能源_估算_千度",
+              "nativeQueryRef": "Proxy_再生能源_估算_千度"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "量值表"
+                    }
+                  },
+                  "Property": "Proxy_燃氣_估算_千度"
+                }
+              },
+              "queryRef": "量值表.Proxy_燃氣_估算_千度",
+              "nativeQueryRef": "Proxy_燃氣_估算_千度"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "量值表"
+                    }
+                  },
+                  "Property": "Proxy_燃煤_估算_千度"
+                }
+              },
+              "queryRef": "量值表.Proxy_燃煤_估算_千度",
+              "nativeQueryRef": "Proxy_燃煤_估算_千度"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "量值表"
+                    }
+                  },
+                  "Property": "Proxy_核能_估算_千度"
+                }
+              },
+              "queryRef": "量值表.Proxy_核能_估算_千度",
+              "nativeQueryRef": "Proxy_核能_估算_千度"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "量值表"
+                  }
+                },
+                "Property": "Proxy_再生能源_估算_千度"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "categoryAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "valueAxis": [
+        {
+          "properties": {
+            "showAxisTitle": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "visualContainerObjects": {
+      "title": [
+        {
+          "properties": {
+            "text": {
+              "expr": {
+                "Literal": {
+                  "Value": "'園區_用電來源結構(估算)'"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

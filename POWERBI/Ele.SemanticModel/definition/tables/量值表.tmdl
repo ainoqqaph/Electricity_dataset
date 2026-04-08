@@ -1,0 +1,890 @@
+table 量值表
+	lineageTag: 3cd06f10-d580-4c78-8766-cfec9137ad0d
+
+	measure 'AI 產業固定耗電量' =
+			
+			CALCULATE(
+			    AVERAGE(vw_TechClimate_Analytics[高壓售電量 (億度)]),
+			    FILTER(
+			        ALL(vw_TechClimate_Analytics),
+			        vw_TechClimate_Analytics[年] = MAX(vw_TechClimate_Analytics[年]) &&
+			        vw_TechClimate_Analytics[產業地區] = MAX(vw_TechClimate_Analytics[產業地區]) &&
+			        vw_TechClimate_Analytics[月平均氣溫 (°C)] < 20
+			    )
+			)
+		lineageTag: ac1520e5-744e-446e-84fe-2c7dcd1d5076
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 電力與氣溫變動規律 =
+			
+			DIVIDE(
+			    SUM(vw_TechClimate_Analytics[用電月增減量]),
+			    SUM(vw_TechClimate_Analytics[氣溫月增減量]),
+			    0
+			)
+		lineageTag: c7ca63f5-1caf-46cf-bbac-5db1694f04d6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'AI 佔總用電量的百分比' = DIVIDE([AI 產業固定耗電量], SUM(vw_TechClimate_Analytics[高壓售電量 (億度)]))
+		lineageTag: 3b217fbb-3adb-4594-ade3-a7d89daa96a9
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 氣候變動下的耗電量 = SUM(vw_TechClimate_Analytics[高壓售電量 (億度)]) - [AI 產業固定耗電量]
+		lineageTag: 85449824-5f2b-4171-a586-f0ee2e9f5e50
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 固定生產耗電成長率 = ```
+			
+			VAR FirstYear = MIN('vw_TechClimate_Analytics'[年])
+			VAR LastYear = MAX('vw_TechClimate_Analytics'[年])
+			VAR District_Selected = SELECTEDVALUE('vw_TechClimate_Analytics'[產業地區])
+			
+			VAR Base_Start = 
+			    CALCULATE(
+			        [AI 產業固定耗電量], 
+			        'vw_TechClimate_Analytics'[年] = FirstYear,
+			        ALL('vw_TechClimate_Analytics'[年月])
+			    )
+			VAR Base_End = 
+			    CALCULATE(
+			        [AI 產業固定耗電量], 
+			        'vw_TechClimate_Analytics'[年] = LastYear,
+			        ALL('vw_TechClimate_Analytics'[年月])
+			    )
+			RETURN 
+			    Base_End - Base_Start
+			```
+		formatString: 0
+		lineageTag: 9651ae73-006e-40cc-9f6f-8c4300773e78
+
+	measure 園區營業額_百萬元 = SUM('Fact_科學園區營業額'[營業額])
+		displayFolder: 基礎量值
+		lineageTag: ee010000-ee01-4000-8001-ee0100000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 生產指數_平均 = AVERAGE('Fact_製造業生產指數'[生產指數])
+		displayFolder: 基礎量值
+		lineageTag: ee020000-ee02-4000-8002-ee0200000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 備轉容量率_平均 = AVERAGE('Fact_備轉容量日'[備轉容量率_pct])
+		displayFolder: 基礎量值
+		lineageTag: ee030000-ee03-4000-8003-ee0300000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 低備轉天數 = ```
+			
+						VAR result = COUNTROWS(FILTER('Fact_備轉容量日', 'Fact_備轉容量日'[備轉容量率_pct] < 10))
+						RETURN IF(ISBLANK(result), 0, result)
+			```
+		formatString: 0
+		displayFolder: 基礎量值
+		lineageTag: ee040000-ee04-4000-8004-ee0400000000
+
+	measure 峰值負載_MW_日均 = AVERAGE('Fact_備轉容量日'[峰値負載_MW])
+		displayFolder: 基礎量值
+		lineageTag: ee050000-ee05-4000-8005-ee0500000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 備轉容量_MW_日均 = AVERAGE('Fact_備轉容量日'[備轉容量_MW])
+		displayFolder: 基礎量值
+		lineageTag: ee060000-ee06-4000-8006-ee0600000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 低備轉天數_本月 =
+			
+			CALCULATE([低備轉天數], DATESMTD(Dim_Date[Date]))
+		displayFolder: 基礎量值
+		lineageTag: ee070000-ee07-4000-8007-ee0700000000
+
+	measure 工業用電_百萬度 = SUM('Fact_台電供需日'[工業用電_百萬度])
+		displayFolder: 基礎量值
+		lineageTag: ee080000-ee08-4000-8008-ee0800000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 民生用電_百萬度 = SUM('Fact_台電供需日'[民生用電_百萬度])
+		displayFolder: 基礎量值
+		lineageTag: ee090000-ee09-4000-8009-ee0900000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 尖峰負載_萬瓩_Max = MAX('Fact_台電供需日'[尖峰負載_萬瓩])
+		displayFolder: 基礎量值
+		lineageTag: ee0a0000-ee0a-4000-800a-ee0a00000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 發電量_百萬度 = SUM('Fact_MOEA發電月'[發電量])
+		displayFolder: 基礎量值
+		lineageTag: ee0b0000-ee0b-4000-800b-ee0b00000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 再生能源發電量 =
+			
+			CALCULATE([發電量_百萬度], 'Fact_MOEA發電月'[發電方式] = "再生能源合計")
+		displayFolder: 基礎量值
+		lineageTag: ee0c0000-ee0c-4000-800c-ee0c00000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _EI_電力密集度 =
+			
+			CALCULATE(
+			    AVERAGE('Fact_能源指標季'[數值]),
+			    'Fact_能源指標季'[指標名稱] = "電力密集度"
+			)
+		displayFolder: 基礎量值
+		lineageTag: ee0d0000-ee0d-4000-800d-ee0d00000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _EI_能源生產力 =
+			
+			CALCULATE(
+			    AVERAGE('Fact_能源指標季'[數值]),
+			    'Fact_能源指標季'[指標名稱] = "能源生產力"
+			)
+		displayFolder: 基礎量值
+		lineageTag: ee0e0000-ee0e-4000-800e-ee0e00000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _EI_初級能源依存度_% =
+			
+			CALCULATE(
+			    AVERAGE('Fact_能源指標季'[數值]),
+			    'Fact_能源指標季'[指標名稱] = "進口能源依存度"
+			)
+		displayFolder: 基礎量值
+		lineageTag: ee0f0000-ee0f-4000-800f-ee0f00000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _EI_石油依存度_% =
+			
+			CALCULATE(
+			    AVERAGE('Fact_能源指標季'[數值]),
+			    'Fact_能源指標季'[指標名稱] = "進口石油依存度"
+			)
+		displayFolder: 基礎量值
+		lineageTag: ee100000-ee10-4000-8010-ee1000000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _EI_進口原油HHI =
+			
+			CALCULATE(
+			    AVERAGE('Fact_能源指標季'[數值]),
+			    'Fact_能源指標季'[指標名稱] = "進口原油來源集中度"
+			)
+		displayFolder: 基礎量值
+		lineageTag: ee110000-ee11-4000-8011-ee1100000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _EI_發電燃料HHI =
+			
+			CALCULATE(
+			    AVERAGE('Fact_能源指標季'[數值]),
+			    'Fact_能源指標季'[指標名稱] = "發電能源種類集中度"
+			)
+		displayFolder: 基礎量值
+		lineageTag: ee120000-ee12-4000-8012-ee1200000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _EI_電力彈性值 =
+			
+			CALCULATE(
+			    AVERAGE('Fact_能源指標季'[數值]),
+			    'Fact_能源指標季'[指標名稱] = "電力彈性值"
+			)
+		displayFolder: 基礎量值
+		lineageTag: ee130000-ee13-4000-8013-ee1300000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _EI_初級能源彈性值 =
+			
+			CALCULATE(
+			    AVERAGE('Fact_能源指標季'[數值]),
+			    'Fact_能源指標季'[指標名稱] = "初級能源彈性值"
+			)
+		displayFolder: 基礎量值
+		lineageTag: ee140000-ee14-4000-8014-ee1400000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 園區高壓用電_億度 = SUM('Fact_TechHubPower'[PowerUsage_100M_kWh])
+		displayFolder: 基礎量值
+		lineageTag: ee150000-ee15-4000-8015-ee1500000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 氣溫月差_平均°C = AVERAGE('Fact_ClimateData_Analytics'[Temp_Diff])
+		displayFolder: 基礎量值
+		lineageTag: ee160000-ee16-4000-8016-ee1600000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 用電月差_平均億度 = AVERAGE('Fact_ClimateData_Analytics'[Power_Diff])
+		displayFolder: 基礎量值
+		lineageTag: ee170000-ee17-4000-8017-ee1700000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 園區峰值負載_萬KW = SUM('Fact_科學園區峰值負載'[負載_萬KW])
+		displayFolder: 基礎量值
+		lineageTag: ee180000-ee18-4000-8018-ee1800000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure GDP生產毛額_連鎖實質_百萬元 = SUM('Fact_GDP生產毛額年'[GDP_連鎖實質_百萬元])
+		displayFolder: 基礎量值
+		lineageTag: ee190000-ee19-4000-8019-ee1900000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 電力密集度_千度per百萬元 = AVERAGE('Fact_電力密集度年'[電力密集度_千度per百萬元])
+		displayFolder: 基礎量值
+		lineageTag: ee1a0000-ee1a-4000-801a-ee1a00000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 再生能源佔比_% = DIVIDE([再生能源發電量], [發電量_百萬度])
+		formatString: 0.00%
+		displayFolder: KPI量值
+		lineageTag: ee1b0000-ee1b-4000-801b-ee1b00000000
+
+	measure 工業用電佔比_% = DIVIDE([工業用電_百萬度], [工業用電_百萬度] + [民生用電_百萬度])
+		formatString: 0.00%
+		displayFolder: KPI量值
+		lineageTag: ee1c0000-ee1c-4000-801c-ee1c00000000
+
+	measure 園區用電效率_千度per百萬元 =
+			
+			DIVIDE([園區高壓用電_億度] * 100000, [園區營業額_百萬元])
+		displayFolder: KPI量值
+		lineageTag: ee1d0000-ee1d-4000-801d-ee1d00000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 園區負載率_% =
+			-- Average annual load factor across available years
+			-- Per year: energy(kWh) / (system peak(kW) x 8760 hrs)
+			-- system peak = max of monthly sum of sub-park peaks within that year
+			AVERAGEX(
+			    INTERSECT(
+			        VALUES('Fact_科學園區用電年'[西元年]),
+			        VALUES('Fact_科學園區峰值負載'[西元年])
+			    ),
+			    VAR yr = [西元年]
+			    VAR energy_kWh = CALCULATE(
+			        SUM('Fact_科學園區用電年'[用電量_千度]),
+			        'Fact_科學園區用電年'[西元年] = yr
+			    ) * 1000
+			    VAR system_peak_kW = CALCULATE(
+			        MAXX(
+			            SUMMARIZE(
+			                'Fact_科學園區峰值負載',
+			                'Fact_科學園區峰值負載'[月]
+			            ),
+			            CALCULATE(SUM('Fact_科學園區峰值負載'[負載_萬KW]))
+			        ),
+			        'Fact_科學園區峰值負載'[西元年] = yr
+			    ) * 10000
+			    VAR hours_year = 8760
+			    RETURN DIVIDE(energy_kWh, system_peak_kW * hours_year)
+			)
+		formatString: 0.00%
+		displayFolder: KPI量值
+		lineageTag: ee1e0000-ee1e-4000-801e-ee1e00000000
+
+	measure 園區營業額_YoY% =
+			
+			VAR CY = [園區營業額_百萬元]
+			VAR PY = CALCULATE([園區營業額_百萬元], SAMEPERIODLASTYEAR(Dim_Date[Date]))
+			RETURN DIVIDE(CY - PY, PY)
+		formatString: 0.00%
+		displayFolder: 時間智慧
+		lineageTag: ee1f0000-ee1f-4000-801f-ee1f00000000
+
+	measure 生產指數_YoY% =
+			VAR CurrentYear = MAX(Dim_Date[Year])
+			VAR CY =
+			    CALCULATE(
+			        AVERAGE('Fact_製造業生產指數'[生產指數]),
+			        FILTER(ALL(Dim_Date), Dim_Date[Year] = CurrentYear)
+			    )
+			VAR PY =
+			    CALCULATE(
+			        AVERAGE('Fact_製造業生產指數'[生產指數]),
+			        FILTER(ALL(Dim_Date), Dim_Date[Year] = CurrentYear - 1)
+			    )
+			RETURN DIVIDE(CY - PY, PY)
+		formatString: 0.00%
+		displayFolder: 時間智慧
+		lineageTag: ee200000-ee20-4000-8020-ee2000000000
+
+	measure 備轉容量率_Rolling12M =
+			
+			AVERAGEX(
+			    DATESINPERIOD(Dim_Date[Date], LASTDATE(Dim_Date[Date]), -12, MONTH),
+			    [備轉容量率_平均]
+			)
+		displayFolder: 時間智慧
+		lineageTag: ee210000-ee21-4000-8021-ee2100000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 園區用電_YoY% =
+			
+			VAR CY = [園區高壓用電_億度]
+			VAR PY = CALCULATE([園區高壓用電_億度], SAMEPERIODLASTYEAR(Dim_Date[Date]))
+			RETURN DIVIDE(CY - PY, PY)
+		formatString: 0.00%
+		displayFolder: 時間智慧
+		lineageTag: ee220000-ee22-4000-8022-ee2200000000
+
+	measure 三園四象限分類 =
+			
+			VAR elec_yoy = [園區用電_YoY%]
+			VAR rev_yoy  = [園區營業額_YoY%]
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        ISBLANK(elec_yoy) || ISBLANK(rev_yoy), BLANK(),
+			        elec_yoy >= 0 && rev_yoy >= 0, "高用電高營收",
+			        elec_yoy >= 0 && rev_yoy < 0,  "高用電低營收（效率警示）",
+			        elec_yoy < 0  && rev_yoy >= 0, "節能增收（最佳）",
+			        "縮減期"
+			    )
+		displayFolder: 四象限
+		lineageTag: ee230000-ee23-4000-8023-ee2300000000
+
+	measure 紅燈天數_備轉<6% = COUNTROWS(FILTER('Fact_備轉容量日', 'Fact_備轉容量日'[備轉容量率_pct] < 6))
+		displayFolder: L1_電網韌性
+		lineageTag: ee240000-ee24-4000-8024-ee2400000000
+
+	measure 紅燈天數_年 =
+			
+			CALCULATE(
+			    [紅燈天數_備轉<6%],
+			    REMOVEFILTERS(Dim_Date[Month])
+			)
+		displayFolder: L1_電網韌性
+		lineageTag: ee250000-ee25-4000-8025-ee2500000000
+
+	measure 備轉容量率_月均 =
+			
+			AVERAGEX(
+			    FILTER(
+			        'Fact_備轉容量日',
+			        RELATED(Dim_Date[Month]) = SELECTEDVALUE(Dim_Date[Month])
+			    ),
+			    'Fact_備轉容量日'[備轉容量率_pct]
+			)
+		displayFolder: L1_電網韌性
+		lineageTag: ee260000-ee26-4000-8026-ee2600000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 備轉容量率_vs同月均值 =
+			
+			VAR current_avg = [備轉容量率_月均]
+			VAR hist_avg =
+			    CALCULATE(
+			        AVERAGE('Fact_備轉容量日'[備轉容量率_pct]),
+			        FILTER(
+			            ALL(Dim_Date),
+			            Dim_Date[Month] = SELECTEDVALUE(Dim_Date[Month])
+			        )
+			    )
+			RETURN current_avg - hist_avg
+		displayFolder: L1_電網韌性
+		lineageTag: ee270000-ee27-4000-8027-ee2700000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 再生能源發電量_YoY% =
+			
+			VAR CY = [再生能源發電量]
+			VAR PY = CALCULATE([再生能源發電量], SAMEPERIODLASTYEAR(Dim_Date[Date]))
+			RETURN DIVIDE(CY - PY, PY)
+		formatString: 0.00%
+		displayFolder: L1_電網韌性
+		lineageTag: ee280000-ee28-4000-8028-ee2800000000
+
+	measure 進口能源依存度_% =
+			
+			CALCULATE(
+			    AVERAGE('Fact_能源指標季'[數值]),
+			    'Fact_能源指標季'[指標名稱] = "進口能源依存度"
+			)
+		displayFolder: L1_電網韌性
+		lineageTag: ee290000-ee29-4000-8029-ee2900000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 發電燃料HHI =
+			
+			CALCULATE(
+			    AVERAGE('Fact_能源指標季'[數值]),
+			    'Fact_能源指標季'[指標名稱] = "發電能源種類集中度"
+			)
+		displayFolder: L1_電網韌性
+		lineageTag: ee2a0000-ee2a-4000-802a-ee2a00000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 尖峰負載_萬瓩_日均 = AVERAGE('Fact_台電供需日'[尖峰負載_萬瓩])
+		displayFolder: L1_電網韌性
+		lineageTag: ee2b0000-ee2b-4000-802b-ee2b00000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 尖峰負載_YoY% =
+			
+			VAR CY = [尖峰負載_萬瓩_日均]
+			VAR PY = CALCULATE([尖峰負載_萬瓩_日均], SAMEPERIODLASTYEAR(Dim_Date[Date]))
+			RETURN DIVIDE(CY - PY, PY)
+		formatString: 0.00%
+		displayFolder: L1_電網韌性
+		lineageTag: ee2c0000-ee2c-4000-802c-ee2c00000000
+
+	measure 尖峰負載_備轉差距_MW =
+			
+			[峰值負載_MW_日均] - [尖峰負載_萬瓩_日均] * 10
+		displayFolder: L1_電網韌性
+		lineageTag: ee2d0000-ee2d-4000-802d-ee2d00000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 電力產值效率_元per度 =
+			-- 營業額欄位實際單位為億元（非百萬元），需乘以 1e8 轉換為元
+			VAR rev_nt   = [園區營業額_百萬元] * 1e8
+			VAR elec_kwh = [園區高壓用電_億度] * 1e8
+			RETURN DIVIDE(rev_nt, elec_kwh)
+		displayFolder: L2_電力效能
+		lineageTag: ee2e0000-ee2e-4000-802e-ee2e00000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 電力密集度_YoY_pct =
+			
+			VAR CY = [電力密集度_千度per百萬元]
+			VAR PY = CALCULATE(
+			    [電力密集度_千度per百萬元],
+			    FILTER(ALL(Dim_Date), Dim_Date[Year] = SELECTEDVALUE(Dim_Date[Year]) - 1)
+			)
+			RETURN DIVIDE(CY - PY, PY)
+		formatString: 0.00%
+		displayFolder: L2_電力效能
+		lineageTag: ee2f0000-ee2f-4000-802f-ee2f00000000
+
+	measure 電力密集度_vs2015改善% =
+			
+			VAR base =
+			    CALCULATE(
+			        [電力密集度_千度per百萬元],
+			        FILTER(ALL(Dim_Date), Dim_Date[Year] = 2015)
+			    )
+			VAR currentValue = [電力密集度_千度per百萬元]
+			RETURN DIVIDE(currentValue - base, base)
+		formatString: 0.00%
+		displayFolder: L2_電力效能
+		lineageTag: ee300000-ee30-4000-8030-ee3000000000
+
+	measure 電力產值效率_排名 =
+			
+			RANKX(
+			    ALLSELECTED('Fact_科學園區營業額'[科學園區]),
+			    [電力產值效率_元per度],
+			    ,
+			    DESC
+			)
+		displayFolder: L2_電力效能
+		lineageTag: ee310000-ee31-4000-8031-ee3100000000
+
+	measure 電力背離指數 = AVERAGE('Fact_電力背離'[PowerDeviation])
+		displayFolder: L3_數位足跡
+		lineageTag: ee320000-ee32-4000-8032-ee3200000000
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 背離指數_排名 =
+			
+			RANKX(
+			    ALLSELECTED('Fact_電力背離'[District]),
+			    [電力背離指數],
+			    ,
+			    DESC
+			)
+		displayFolder: L3_數位足跡
+		lineageTag: ee330000-ee33-4000-8033-ee3300000000
+
+	measure 高負載月數_>80pct =
+			
+			COUNTROWS(
+			    FILTER(
+			        VALUES(Dim_Date[YearMonth]),
+			        [園區負載率_%] > 0.8
+			    )
+			)
+		displayFolder: L3_數位足跡
+		lineageTag: ee340000-ee34-4000-8034-ee3400000000
+
+	measure 峰值負載_YoY% =
+			
+			VAR CY = [園區峰值負載_萬KW]
+			VAR PY = CALCULATE([園區峰值負載_萬KW], SAMEPERIODLASTYEAR(Dim_Date[Date]))
+			RETURN DIVIDE(CY - PY, PY)
+		formatString: 0.00%
+		displayFolder: L3_數位足跡
+		lineageTag: ee350000-ee35-4000-8035-ee3500000000
+
+	measure 製造業景氣共振指數 =
+			
+			VAR deviation  = [電力背離指數]
+			VAR mfg_growth = [生產指數_YoY%]
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        ISBLANK(deviation) || ISBLANK(mfg_growth), BLANK(),
+			        deviation > 0.5 && mfg_growth > 0.05,  "強共振（AI+景氣雙驅動）",
+			        deviation > 0.5 && mfg_growth <= 0.05, "背離主導（AI超前景氣）",
+			        deviation <= 0  && mfg_growth > 0.05,  "景氣未反映用電",
+			        "正常範圍"
+			    )
+		displayFolder: L3_數位足跡
+		lineageTag: ee360000-ee36-4000-8036-ee3600000000
+
+	measure 電力消費_億度 = DIVIDE(SUM('Fact_電力密集度年'[電力消費_千度]), 100000)
+		formatString: 0.00
+		displayFolder: L2_電力效能
+		lineageTag: ee370000-ee37-4000-8037-ee3700000000
+
+	measure PENDING_已入區廠商數 = BLANK()
+		displayFolder: PENDING
+		lineageTag: ee380000-ee38-4000-8038-ee3800000000
+
+	measure 電力消費_YoY% =
+			VAR CY = [電力消費_億度]
+			VAR PY = CALCULATE([電力消費_億度], SAMEPERIODLASTYEAR(Dim_Date[Date]))
+			RETURN DIVIDE(CY - PY, PY)
+		formatString: 0.00%
+		displayFolder: L2_電力效能
+		lineageTag: ee390000-ee39-4000-8039-ee3900000000
+
+	measure 四象限分類 =
+			VAR elec_yoy = [電力消費_YoY%]
+			VAR prod_yoy = [生產指數_YoY%]
+			RETURN
+			    SWITCH(
+			        TRUE(),
+			        ISBLANK(elec_yoy) || ISBLANK(prod_yoy), BLANK(),
+			        elec_yoy >= 0 && prod_yoy >= 0, "高用電高生產",
+			        elec_yoy >= 0 && prod_yoy < 0,  "高用電低生產（效率警示）",
+			        elec_yoy < 0  && prod_yoy >= 0, "低用電高生產（效率提升）",
+			        "低用電低生產（景氣低迷）"
+			    )
+		displayFolder: L2_電力效能
+		lineageTag: ee3a0000-ee3a-4000-803a-ee3a00000000
+
+	measure 用電彈性 = DIVIDE([電力消費_YoY%], [生產指數_YoY%])
+		formatString: 0.00
+		displayFolder: L2_電力效能
+		lineageTag: ee3b0000-ee3b-4000-803b-ee3b00000000
+
+	measure GDP用電脫鉤指數 = DIVIDE([GDP份額%], [用電份額%])
+		formatString: 0.00
+		displayFolder: L2_電力效能
+		lineageTag: ee3c0000-ee3c-4000-803c-ee3c00000000
+
+	measure 高壓用電指數 = ```
+			
+			  VAR base = CALCULATE(
+			      SUM('Fact_TechHubPower'[PowerUsage_100M_kWh]),
+			      'Dim_Date'[Year] = 2016,
+			      ALL('Dim_Date')
+			  )
+			  RETURN DIVIDE(SUM('Fact_TechHubPower'[PowerUsage_100M_kWh]), base) 
+			```
+		formatString: 0.00
+		displayFolder: L3_數位足跡
+		lineageTag: a3376060-f248-4d6b-893e-e70581f60c7e
+
+	measure 營業額指數 = ```
+			
+			  VAR base = CALCULATE(
+			      SUM('Fact_科學園區營業額'[營業額]),
+			      'Dim_Date'[Year] = 2016,
+			      ALL('Dim_Date')
+			  )
+			  RETURN DIVIDE(SUM('Fact_科學園區營業額'[營業額]), base) 
+			```
+		displayFolder: L3_數位足跡
+		lineageTag: 15cf1bd7-3359-4819-ac42-2ad015e54680
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure GDP份額% = ```
+			
+			  DIVIDE(
+			      SUM('Fact_電力密集度年'[GDP合計_連鎖實質_百萬元]),
+			      CALCULATE(
+			          SUM('Fact_電力密集度年'[GDP合計_連鎖實質_百萬元]),
+			          ALL('Fact_電力密集度年'[行業別])
+			      )
+			  )
+			```
+		displayFolder: L2_電力效能
+		lineageTag: ac9c5438-1644-4f5b-998a-6d4eb32dad02
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 用電份額% = ```
+			
+			  DIVIDE(
+			      SUM('Fact_電力密集度年'[電力消費_千度]),
+			      CALCULATE(
+			          SUM('Fact_電力密集度年'[電力消費_千度]),
+			          ALL('Fact_電力密集度年'[行業別])
+			      )
+			  )
+			```
+		displayFolder: L2_電力效能
+		lineageTag: 21731372-48bb-4bfe-8140-3f9a5ba8b0b8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 電力密集度_GDP_百萬元 = SUM('Fact_電力密集度年'[GDP合計_連鎖實質_百萬元])
+		displayFolder: L2_電力效能
+		lineageTag: 0adb6ac5-8416-4034-aa7c-7067f6dd1cd1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 每度電GDP_元 = ```
+			
+			      -- GDP(百萬元) × 1e6 ÷ 電力消費(千度) × 1e3 = 元/度
+			      DIVIDE(
+			          SUM('Fact_電力密集度年'[GDP合計_連鎖實質_百萬元]) * 1000,
+			          SUM('Fact_電力密集度年'[電力消費_千度])
+			      )
+			```
+		displayFolder: L2_電力效能
+		lineageTag: fd1f118b-cefb-4ec0-bce6-1041c237f1c6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure _Proxy_全國年毛發電量 =
+			CALCULATE(
+			    SUM('Fact_MOEA發電月'[發電量]),
+			    'Fact_MOEA發電月'[發電方式] = "總計_毛發電"
+			)
+		displayFolder: L3_科學園區電源結構
+		lineageTag: fa130001-fa13-4001-8013-fa1300000013
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Proxy_燃氣_占比 =
+			DIVIDE(
+			    CALCULATE(SUM('Fact_MOEA發電月'[發電量]), 'Fact_MOEA發電月'[發電方式] = "燃氣發電"),
+			    [_Proxy_全國年毛發電量]
+			)
+		formatString: 0.00%
+		displayFolder: L3_科學園區電源結構
+		lineageTag: fa130002-fa13-4002-8013-fa1300000013
+
+	measure Proxy_燃煤_占比 =
+			DIVIDE(
+			    CALCULATE(SUM('Fact_MOEA發電月'[發電量]), 'Fact_MOEA發電月'[發電方式] = "燃煤發電"),
+			    [_Proxy_全國年毛發電量]
+			)
+		formatString: 0.00%
+		displayFolder: L3_科學園區電源結構
+		lineageTag: fa130003-fa13-4003-8013-fa1300000013
+
+	measure Proxy_核能_占比 =
+			DIVIDE(
+			    CALCULATE(SUM('Fact_MOEA發電月'[發電量]), 'Fact_MOEA發電月'[發電方式] = "核能發電"),
+			    [_Proxy_全國年毛發電量]
+			)
+		formatString: 0.00%
+		displayFolder: L3_科學園區電源結構
+		lineageTag: fa130004-fa13-4004-8013-fa1300000013
+
+	measure Proxy_再生能源_占比 =
+			DIVIDE(
+			    CALCULATE(SUM('Fact_MOEA發電月'[發電量]), 'Fact_MOEA發電月'[發電方式] = "再生能源合計"),
+			    [_Proxy_全國年毛發電量]
+			)
+		formatString: 0.00%
+		displayFolder: L3_科學園區電源結構
+		lineageTag: fa130005-fa13-4005-8013-fa1300000013
+
+	measure Proxy_其他_占比 = 1 - [Proxy_燃氣_占比] - [Proxy_燃煤_占比] - [Proxy_核能_占比] - [Proxy_再生能源_占比]
+		formatString: 0.00%
+		displayFolder: L3_科學園區電源結構
+		lineageTag: fa130006-fa13-4006-8013-fa1300000013
+
+	measure 園區_用電量_千度 = SUM('Fact_科學園區用電年'[用電量_千度])
+		displayFolder: L3_科學園區電源結構
+		lineageTag: fa130007-fa13-4007-8013-fa1300000013
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Proxy_燃氣_估算_千度 = [園區_用電量_千度] * [Proxy_燃氣_占比]
+		displayFolder: L3_科學園區電源結構
+		lineageTag: fa130008-fa13-4008-8013-fa1300000013
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Proxy_燃煤_估算_千度 = [園區_用電量_千度] * [Proxy_燃煤_占比]
+		displayFolder: L3_科學園區電源結構
+		lineageTag: fa130009-fa13-4009-8013-fa1300000013
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Proxy_核能_估算_千度 = [園區_用電量_千度] * [Proxy_核能_占比]
+		displayFolder: L3_科學園區電源結構
+		lineageTag: fa13000a-fa13-400a-8013-fa1300000013
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Proxy_再生能源_估算_千度 = [園區_用電量_千度] * [Proxy_再生能源_占比]
+		displayFolder: L3_科學園區電源結構
+		lineageTag: fa13000b-fa13-400b-8013-fa1300000013
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure Proxy_其他_估算_千度 = [園區_用電量_千度] * [Proxy_其他_占比]
+		displayFolder: L3_科學園區電源結構
+		lineageTag: fa13000c-fa13-400c-8013-fa1300000013
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 水力發電量 = CALCULATE([發電量_百萬度], 'Fact_MOEA發電月'[發電方式] = "慣常水力發電")
+		displayFolder: L1_電網韌性\再生能源結構
+		lineageTag: a3010010-a301-4010-8010-a30100000010
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 水力佔比_% = DIVIDE([水力發電量], [發電量_百萬度])
+		formatString: 0.00%
+		displayFolder: L1_電網韌性\再生能源結構
+		lineageTag: a3010011-a301-4011-8011-a30100000011
+
+	measure 太陽光電發電量 = CALCULATE([發電量_百萬度], 'Fact_MOEA發電月'[發電方式] = "太陽光電")
+		displayFolder: L1_電網韌性\再生能源結構
+		lineageTag: a3010001-a301-4001-8001-a30100000001
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 風力發電量 = CALCULATE([發電量_百萬度], 'Fact_MOEA發電月'[發電方式] = "風力發電")
+		displayFolder: L1_電網韌性\再生能源結構
+		lineageTag: a3010002-a301-4002-8002-a30100000002
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 太陽光電佔比_% = DIVIDE([太陽光電發電量], [發電量_百萬度])
+		formatString: 0.00%
+		displayFolder: L1_電網韌性\再生能源結構
+		lineageTag: a3010003-a301-4003-8003-a30100000003
+
+	measure 風力佔比_% = DIVIDE([風力發電量], [發電量_百萬度])
+		formatString: 0.00%
+		displayFolder: L1_電網韌性\再生能源結構
+		lineageTag: a3010004-a301-4004-8004-a30100000004
+
+	measure 備轉容量率_月最低均 =
+			AVERAGEX(
+			    SUMMARIZE(
+			        'Fact_備轉容量日',
+			        Dim_Date[YearMonth],
+			        "月最低", MIN('Fact_備轉容量日'[備轉容量率_pct])
+			    ),
+			    [月最低]
+			)
+		displayFolder: L1_電網韌性\再生能源結構
+		lineageTag: a3010005-a301-4005-8005-a30100000005
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 夏季備轉率_均 =
+			CALCULATE(
+			    AVERAGE('Fact_備轉容量日'[備轉容量率_pct]),
+			    Dim_Date[Month] IN {6, 7, 8}
+			)
+		displayFolder: L1_電網韌性\再生能源結構
+		lineageTag: a3010006-a301-4006-8006-a30100000006
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 夏季低備轉天數 = CALCULATE([低備轉天數], Dim_Date[Month] IN {6, 7, 8})
+		displayFolder: L1_電網韌性\再生能源結構
+		lineageTag: a3010007-a301-4007-8007-a30100000007
+
+	measure 再生能源佔比_2018基準 =
+			CALCULATE(
+			    [再生能源佔比_%],
+			    ALL(Dim_Date),
+			    Dim_Date[Year] = 2018
+			)
+		formatString: 0.00%
+		displayFolder: L1_電網韌性\再生能源結構
+		lineageTag: a3010008-a301-4008-8008-a30100000008
+
+	measure 再生能源成長_百分點 = [再生能源佔比_%] - [再生能源佔比_2018基準]
+		formatString: 0.00%
+		displayFolder: L1_電網韌性\再生能源結構
+		lineageTag: a3010009-a301-4009-8009-a30100000009
+
+	measure 民生用電_佔比_% = DIVIDE([民生用電_百萬度], [工業用電_百萬度] + [民生用電_百萬度])
+		displayFolder: KPI量值
+		lineageTag: a5f5e87a-929f-4f42-9d8d-c93f450b4e7f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 備轉緊張頻率 = DIVIDE([低備轉天數], COUNTROWS('Fact_備轉容量日'))
+		displayFolder: KPI量值
+		lineageTag: ffaf8162-81ff-4f2b-9ebe-9afa8b231c2d
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 電力密集度_2015指數 =
+			VAR base =
+			    CALCULATE(
+			        [電力密集度_千度per百萬元],
+			        FILTER(ALL(Dim_Date), Dim_Date[Year] = 2015)
+			    )
+			RETURN DIVIDE([電力密集度_千度per百萬元], base) * 100
+		formatString: 0.0
+		displayFolder: L2_電力效能
+		lineageTag: b2010001-b201-4001-8001-b20100000001
+
+	column column
+		lineageTag: d00dd61b-83f5-45f5-9c33-e8d40c4c31ba
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 量值表 = calculated
+		mode: import
+		source = ROW("column","量值存放" )
+
+	annotation PBI_Id = aff688d7d724480e8e207f1512c6308f
+

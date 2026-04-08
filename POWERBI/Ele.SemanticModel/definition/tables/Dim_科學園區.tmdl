@@ -1,0 +1,17 @@
+table Dim_科學園區
+	lineageTag: fd010000-fd01-4000-8001-fd0100000001
+
+	column 科學園區
+		lineageTag: 4b9e2202-e808-4e69-8c5d-da25cd91152d
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: Fact_科學園區營業額[科學園區]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_科學園區 = calculated
+		mode: import
+		source = VALUES('Fact_科學園區營業額'[科學園區])
+
+	annotation PBI_Id = fd010000fd0140008001fd0100000001
+

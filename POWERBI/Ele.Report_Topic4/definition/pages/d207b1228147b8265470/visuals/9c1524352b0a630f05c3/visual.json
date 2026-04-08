@@ -1,0 +1,121 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.6.0/schema.json",
+  "name": "9c1524352b0a630f05c3",
+  "position": {
+    "x": 743,
+    "y": 387,
+    "z": 2000,
+    "height": 333,
+    "width": 537,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "stackedAreaChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_TechClimate_Analytics"
+                    }
+                  },
+                  "Property": "年月"
+                }
+              },
+              "queryRef": "vw_TechClimate_Analytics.YearMonth",
+              "nativeQueryRef": "年月",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "量值表"
+                    }
+                  },
+                  "Property": "AI 產業固定耗電量"
+                }
+              },
+              "queryRef": "量值表.AI 產業固定耗電量",
+              "nativeQueryRef": "AI 產業固定耗電量"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "量值表"
+                    }
+                  },
+                  "Property": "氣候變動下的耗電量"
+                }
+              },
+              "queryRef": "量值表.氣候變動下的耗電量",
+              "nativeQueryRef": "氣候變動下的耗電量"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "vw_TechClimate_Analytics"
+                  }
+                },
+                "Property": "年月"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ]
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "a96c130ecdd21dfdff35",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "vw_TechClimate_Analytics"
+              }
+            },
+            "Property": "年月"
+          }
+        },
+        "type": "Categorical",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,98 @@
+table Fact_製造業生產指數
+	lineageTag: fa0d0000-fa0d-4000-800d-fa0d0000000d
+
+	column 西元年
+		dataType: int64
+		lineageTag: fa0d0001-fa0d-4001-800d-fa0d0000000d
+		summarizeBy: sum
+		sourceColumn: 西元年
+
+		annotation SummarizationSetBy = Automatic
+
+	column 月
+		dataType: int64
+		lineageTag: fa0d0002-fa0d-4002-800d-fa0d0000000d
+		summarizeBy: sum
+		sourceColumn: 月
+
+		annotation SummarizationSetBy = Automatic
+
+	column 產業
+		dataType: string
+		lineageTag: fa0d0003-fa0d-4003-800d-fa0d0000000d
+		summarizeBy: none
+		sourceColumn: 產業
+
+		annotation SummarizationSetBy = Automatic
+
+	column 生產指數
+		dataType: double
+		lineageTag: fa0d0004-fa0d-4004-800d-fa0d0000000d
+		summarizeBy: sum
+		sourceColumn: 生產指數
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fa0d0005-fa0d-4005-800d-fa0d0000000d
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 行業別_群組
+		dataType: string
+		lineageTag: fa0d0006-fa0d-4006-800d-fa0d0000000d
+		summarizeBy: none
+		sourceColumn: 行業別_群組
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Fact_製造業生產指數 = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(
+				        File.Contents("C:\職訓課\Electricity_dataset\data\moea_manufacturing_index.csv"),
+				        [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]
+				    ),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    TypeChanged = Table.TransformColumnTypes(Promoted, {
+				        {"西元年", Int64.Type}, {"月", Int64.Type},
+				        {"產業", type text}, {"生產指數", type number}
+				    }),
+				    DateAdded = Table.AddColumn(TypeChanged, "Date",
+				        each #date([西元年], [月], 1), type date),
+				    GroupAdded = Table.AddColumn(DateAdded, "行業別_群組",
+				        each
+				            let p = [產業]
+				            in if p = "化學材料及肥料業" then "化學材料及肥料製造業"
+				               else if p = "基本金屬業" then "基本金屬製造業"
+				               else if p = "塑膠製品業" then "塑膠製品製造業"
+				               else if p = "紙漿、紙及紙製品業" then "紙漿紙及紙製品製造業"
+				               else if p = "紡織業" then "紡織成衣及服飾品製造業"
+				               else if p = "成衣及服飾品業" then "紡織成衣及服飾品製造業"
+				               else if p = "金屬製品業" then "金屬製品製造業"
+				               else if p = "電腦、電子產品及光學製品業" then "電子產品及電力設備製造業"
+				               else if p = "電子零組件業" then "電子產品及電力設備製造業"
+				               else if p = "電力設備及配備業" then "電子產品及電力設備製造業"
+				               else if p = "非金屬礦物製品業" then "非金屬礦物製品製造業"
+				               else null,
+				        type text),
+				    Selected = Table.SelectColumns(GroupAdded,
+				        {"西元年", "月", "產業", "生產指數", "Date", "行業別_群組"})
+				in
+				    Selected
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_Id = fa0d0000fa0d4000800dfa0d0000000d
+
+	annotation PBI_NavigationStepName = Navigation
+

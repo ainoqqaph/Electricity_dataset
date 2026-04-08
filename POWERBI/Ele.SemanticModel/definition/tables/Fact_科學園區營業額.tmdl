@@ -1,0 +1,84 @@
+table Fact_科學園區營業額
+	lineageTag: fa070000-fa07-4000-8007-fa0700000007
+
+	column 西元年
+		dataType: int64
+		lineageTag: fa070001-fa07-4001-8007-fa0700000007
+		summarizeBy: sum
+		sourceColumn: 西元年
+
+		annotation SummarizationSetBy = Automatic
+
+	column 月
+		dataType: int64
+		lineageTag: fa070002-fa07-4002-8007-fa0700000007
+		summarizeBy: sum
+		sourceColumn: 月
+
+		annotation SummarizationSetBy = Automatic
+
+	column 科學園區
+		dataType: string
+		lineageTag: fa070003-fa07-4003-8007-fa0700000007
+		summarizeBy: none
+		sourceColumn: 科學園區
+
+		annotation SummarizationSetBy = Automatic
+
+	column 產業
+		dataType: string
+		lineageTag: fa070004-fa07-4004-8007-fa0700000007
+		summarizeBy: none
+		sourceColumn: 產業
+
+		annotation SummarizationSetBy = Automatic
+
+	column 營業額
+		dataType: double
+		lineageTag: fa070005-fa07-4005-8007-fa0700000007
+		summarizeBy: sum
+		sourceColumn: 營業額
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fa070006-fa07-4006-8007-fa0700000007
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Fact_科學園區營業額 = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(
+				        File.Contents("C:\職訓課\Electricity_dataset\data\science_park_revenue.csv"),
+				        [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]
+				    ),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    TypeChanged = Table.TransformColumnTypes(Promoted, {
+				        {"西元年", Int64.Type}, {"月", Int64.Type},
+				        {"科學園區", type text}, {"產業", type text},
+				        {"營業額", type number}
+				    }),
+				    DateAdded = Table.AddColumn(TypeChanged, "Date",
+				        each #date([西元年], [月], 1), type date),
+				    Selected = Table.SelectColumns(DateAdded,
+				        {"西元年", "月", "科學園區", "產業", "營業額", "Date"}),
+				    #"Filtered Rows" = Table.SelectRows(Selected, each ([科學園區] <> "總　　計") and ([產業] <> "總計"))
+				in
+				    #"Filtered Rows"
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_Id = fa070000fa0740008007fa0700000007
+
+	annotation PBI_NavigationStepName = Navigation
+

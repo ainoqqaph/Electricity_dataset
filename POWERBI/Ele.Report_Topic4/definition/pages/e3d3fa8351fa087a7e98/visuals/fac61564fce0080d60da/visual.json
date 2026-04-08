@@ -1,0 +1,75 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "fac61564fce0080d60da",
+  "position": {
+    "x": 680.57259713701433,
+    "y": 0,
+    "z": 2000,
+    "height": 207.44376278118611,
+    "width": 573.9059304703477,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "columnChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_電力密集度年"
+                    }
+                  },
+                  "Property": "行業別"
+                }
+              },
+              "queryRef": "Fact_電力密集度年.行業別",
+              "nativeQueryRef": "行業別",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "量值表"
+                    }
+                  },
+                  "Property": "GDP用電脫鉤指數"
+                }
+              },
+              "queryRef": "量值表.GDP用電脫鉤指數",
+              "nativeQueryRef": "GDP用電脫鉤指數"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "量值表"
+                  }
+                },
+                "Property": "GDP用電脫鉤指數"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

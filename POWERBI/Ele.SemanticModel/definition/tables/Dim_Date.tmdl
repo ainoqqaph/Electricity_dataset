@@ -1,0 +1,118 @@
+table Dim_Date
+	lineageTag: fb000000-fb00-4000-8000-fb0000000000
+
+	column Date
+		dataType: dateTime
+		isKey
+		formatString: General Date
+		lineageTag: fb000001-fb00-4001-8000-fb0000000000
+		summarizeBy: none
+		sourceColumn: [Date]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: fb000002-fb00-4002-8000-fb0000000000
+		summarizeBy: sum
+		sourceColumn: [Year]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: fb000003-fb00-4003-8000-fb0000000000
+		summarizeBy: sum
+		sourceColumn: [Month]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter
+		dataType: int64
+		formatString: 0
+		lineageTag: fb000004-fb00-4004-8000-fb0000000000
+		summarizeBy: sum
+		sourceColumn: [Quarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonth
+		dataType: int64
+		formatString: 0
+		lineageTag: fb000005-fb00-4005-8000-fb0000000000
+		summarizeBy: sum
+		sourceColumn: [YearMonth]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearQuarter
+		dataType: string
+		lineageTag: fb000006-fb00-4006-8000-fb0000000000
+		summarizeBy: none
+		sourceColumn: [YearQuarter]
+
+		annotation SummarizationSetBy = Automatic
+
+	column MonthName
+		dataType: string
+		lineageTag: fb000007-fb00-4007-8000-fb0000000000
+		summarizeBy: none
+		sourceColumn: [MonthName]
+
+		annotation SummarizationSetBy = Automatic
+
+	column YearMonthLabel
+		dataType: string
+		lineageTag: fb000008-fb00-4008-8000-fb0000000000
+		summarizeBy: none
+		sourceColumn: [YearMonthLabel]
+		sortByColumn: YearMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column 季節
+		dataType: string
+		lineageTag: fb000009-fb00-4009-8000-fb0000000009
+		summarizeBy: none
+		sourceColumn: [季節]
+		sortByColumn: 季節順序
+
+		annotation SummarizationSetBy = Automatic
+
+	column 季節順序
+		dataType: int64
+		formatString: 0
+		lineageTag: fb00000a-fb00-400a-8000-fb000000000a
+		summarizeBy: none
+		sourceColumn: [季節順序]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_Date = calculated
+		mode: import
+		source =
+				ADDCOLUMNS(
+				    CALENDAR(DATE(2015, 1, 1), DATE(2026, 12, 31)),
+				    "Year",        YEAR([Date]),
+				    "Month",       MONTH([Date]),
+				    "Quarter",     QUARTER([Date]),
+				    "YearMonth",      FORMAT([Date], "YYYYMM"),
+				    "YearMonthLabel", FORMAT([Date], "YYYY") & "-" & FORMAT(MONTH([Date]), "00"),
+				    "YearQuarter",    FORMAT([Date], "YYYY") & "Q" & FORMAT(QUARTER([Date]), "0"),
+				    "MonthName",   FORMAT([Date], "MMM"),
+				    "季節",
+				        IF(MONTH([Date]) IN {3,4,5}, "春",
+				        IF(MONTH([Date]) IN {6,7,8}, "夏",
+				        IF(MONTH([Date]) IN {9,10,11}, "秋",
+				        "冬"))),
+				    "季節順序",
+				        IF(MONTH([Date]) IN {3,4,5}, 1,
+				        IF(MONTH([Date]) IN {6,7,8}, 2,
+				        IF(MONTH([Date]) IN {9,10,11}, 3,
+				        4)))
+				)
+
+	annotation PBI_Id = fb000000fb0040008000fb0000000000
+

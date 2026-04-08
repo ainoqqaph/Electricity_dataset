@@ -1,0 +1,144 @@
+table Fact_園區全國用電佔比
+	lineageTag: fa120000-fa12-4000-8012-fa1200000012
+
+	column 西元年
+		dataType: int64
+		lineageTag: fa120001-fa12-4001-8012-fa1200000012
+		summarizeBy: none
+		sourceColumn: 西元年
+
+		annotation SummarizationSetBy = Automatic
+
+	column 民國年
+		dataType: int64
+		lineageTag: fa120002-fa12-4002-8012-fa1200000012
+		summarizeBy: none
+		sourceColumn: 民國年
+
+		annotation SummarizationSetBy = Automatic
+
+	column 全國用電量_千度
+		dataType: double
+		lineageTag: fa120003-fa12-4003-8012-fa1200000012
+		summarizeBy: sum
+		sourceColumn: 全國用電量_千度
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 竹科用電量_千度
+		dataType: double
+		lineageTag: fa120004-fa12-4004-8012-fa1200000012
+		summarizeBy: sum
+		sourceColumn: 竹科用電量_千度
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 竹科占全國比例
+		dataType: double
+		formatString: 0.00%
+		lineageTag: fa120005-fa12-4005-8012-fa1200000012
+		summarizeBy: none
+		sourceColumn: 竹科占全國比例
+
+		annotation SummarizationSetBy = Automatic
+
+	column 中科用電量_千度
+		dataType: double
+		lineageTag: fa120006-fa12-4006-8012-fa1200000012
+		summarizeBy: sum
+		sourceColumn: 中科用電量_千度
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 中科占全國比例
+		dataType: double
+		formatString: 0.00%
+		lineageTag: fa120007-fa12-4007-8012-fa1200000012
+		summarizeBy: none
+		sourceColumn: 中科占全國比例
+
+		annotation SummarizationSetBy = Automatic
+
+	column 南科用電量_千度
+		dataType: double
+		lineageTag: fa120008-fa12-4008-8012-fa1200000012
+		summarizeBy: sum
+		sourceColumn: 南科用電量_千度
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 南科占全國比例
+		dataType: double
+		formatString: 0.00%
+		lineageTag: fa120009-fa12-4009-8012-fa1200000012
+		summarizeBy: none
+		sourceColumn: 南科占全國比例
+
+		annotation SummarizationSetBy = Automatic
+
+	column 三園合計_千度
+		dataType: double
+		lineageTag: fa12000a-fa12-400a-8012-fa1200000012
+		summarizeBy: sum
+		sourceColumn: 三園合計_千度
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 科學園區占全國比例
+		dataType: double
+		formatString: 0.00%
+		lineageTag: fa12000b-fa12-400b-8012-fa1200000012
+		summarizeBy: none
+		sourceColumn: 科學園區占全國比例
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fa12000c-fa12-400c-8012-fa1200000012
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Fact_園區全國用電佔比 = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(
+				        File.Contents("C:\職訓課\Electricity_dataset\data\science_park_electricity_national_share.csv"),
+				        [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]
+				    ),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    TypeChanged = Table.TransformColumnTypes(Promoted, {
+				        {"西元年", Int64.Type}, {"民國年", Int64.Type},
+				        {"全國用電量_千度", type number},
+				        {"竹科用電量_千度", type number}, {"竹科占全國比例", type number},
+				        {"中科用電量_千度", type number}, {"中科占全國比例", type number},
+				        {"南科用電量_千度", type number}, {"南科占全國比例", type number},
+				        {"三園合計_千度", type number}, {"科學園區占全國比例", type number}
+				    }),
+				    DateAdded = Table.AddColumn(TypeChanged, "Date",
+				        each #date([西元年], 1, 1), type date)
+				in
+				    DateAdded
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_Id = fa120000fa1240008012fa1200000012
+
+	annotation PBI_NavigationStepName = Navigation
+

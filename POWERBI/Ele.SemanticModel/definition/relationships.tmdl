@@ -1,0 +1,84 @@
+relationship 94a0c973-20a1-f152-1b54-808ba05d498a
+	fromColumn: Fact_ClimateData_Analytics.Date
+	toColumn: Dim_Date.Date
+
+relationship fb010000-fb01-4000-8001-fb0100000001
+	fromColumn: Fact_備轉容量日.Date
+	toColumn: Dim_Date.Date
+
+relationship fb020000-fb02-4000-8002-fb0200000002
+	fromColumn: Fact_MOEA發電月.Date
+	toColumn: Dim_Date.Date
+
+relationship fb030000-fb03-4000-8003-fb0300000003
+	fromColumn: Fact_台電供需日.Date
+	toColumn: Dim_Date.Date
+
+relationship fb040000-fb04-4000-8004-fb0400000004
+	fromColumn: Fact_能源指標季.Date
+	toColumn: Dim_Date.Date
+
+relationship fb050000-fb05-4000-8005-fb0500000005
+	fromColumn: Fact_發購電8類年.Date
+	toColumn: Dim_Date.Date
+
+relationship fb060000-fb06-4000-8006-fb0600000006
+	fromColumn: Fact_電力密集度年.Date
+	toColumn: Dim_Date.Date
+
+relationship fb070000-fb07-4000-8007-fb0700000007
+	fromColumn: Fact_科學園區營業額.Date
+	toColumn: Dim_Date.Date
+
+relationship fb080000-fb08-4000-8008-fb0800000008
+	fromColumn: Fact_GDP生產毛額年.Date
+	toColumn: Dim_Date.Date
+
+relationship fb090000-fb09-4000-8009-fb0900000009
+	fromColumn: Fact_電力背離.Date
+	toColumn: Dim_Date.Date
+
+relationship fb0a0000-fb0a-4000-800a-fb0a0000000a
+	fromColumn: Fact_TechHubPower.Date
+	toColumn: Dim_Date.Date
+
+relationship fb0c0000-fb0c-4000-800c-fb0c0000000c
+	fromColumn: Fact_科學園區峰值負載.Date
+	toColumn: Dim_Date.Date
+
+relationship fb0d0000-fb0d-4000-800d-fb0d0000000d
+	fromColumn: Fact_製造業生產指數.Date
+	toColumn: Dim_Date.Date
+
+relationship 0287180f-9ab1-f3e4-93d9-f3a926a8e893
+	fromColumn: Fact_TechHubPower.科學園區
+	toColumn: Dim_科學園區.科學園區
+
+relationship efc26ab4-1b9c-a7df-ccd9-9d7ccab8c98c
+	fromColumn: Fact_科學園區營業額.科學園區
+	toColumn: Dim_科學園區.科學園區
+
+relationship fb110000-fb11-4000-8011-fb1100000011
+	fromColumn: Fact_科學園區用電年.Date
+	toColumn: Dim_Date.Date
+
+relationship fb120000-fb12-4000-8012-fb1200000012
+	fromColumn: Fact_園區全國用電佔比.Date
+	toColumn: Dim_Date.Date
+
+relationship fb130000-fb13-4000-8013-fb1300000013
+	fromColumn: Fact_科學園區峰值負載.園區別
+	toColumn: Dim_科學園區.科學園區
+
+relationship fb140000-fb14-4000-8014-fb1400000014
+	fromColumn: Fact_科學園區用電年.園區別
+	toColumn: Dim_科學園區.科學園區
+
+relationship da020001-da02-4001-8002-da0200000002
+	fromColumn: Fact_電力密集度年.行業別
+	toColumn: Dim_製造業產業.行業別
+
+relationship da020002-da02-4002-8002-da0200000002
+	fromColumn: Fact_製造業生產指數.行業別_群組
+	toColumn: Dim_製造業產業.行業別
+

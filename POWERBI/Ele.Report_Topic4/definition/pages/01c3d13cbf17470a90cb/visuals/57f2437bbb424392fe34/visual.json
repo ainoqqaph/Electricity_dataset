@@ -1,0 +1,274 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "57f2437bbb424392fe34",
+  "position": {
+    "x": 732.46049661399559,
+    "y": 151.69300225733636,
+    "z": 3000,
+    "height": 567.765237020316,
+    "width": 496.97516930022579,
+    "tabOrder": 3000
+  },
+  "visual": {
+    "visualType": "deneb7E15AEF80B9E4D4F8E12924291ECE89A",
+    "query": {
+      "queryState": {
+        "dataset": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Date"
+                    }
+                  },
+                  "Property": "Year"
+                }
+              },
+              "queryRef": "Sum(Dim_Date.Year)",
+              "nativeQueryRef": "Year"
+            },
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Date"
+                    }
+                  },
+                  "Property": "Month"
+                }
+              },
+              "queryRef": "Sum(Dim_Date.Month)",
+              "nativeQueryRef": "Month"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "量值表"
+                    }
+                  },
+                  "Property": "低備轉天數"
+                }
+              },
+              "queryRef": "量值表.低備轉天數",
+              "nativeQueryRef": "低備轉天數"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "量值表"
+                    }
+                  },
+                  "Property": "備轉容量率_平均"
+                }
+              },
+              "queryRef": "量值表.備轉容量率_平均",
+              "nativeQueryRef": "備轉容量率_平均"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Column": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "Dim_Date"
+                  }
+                },
+                "Property": "Year"
+              }
+            },
+            "direction": "Ascending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "objects": {
+      "vega": [
+        {
+          "properties": {
+            "provider": {
+              "expr": {
+                "Literal": {
+                  "Value": "'vegaLite'"
+                }
+              }
+            },
+            "jsonSpec": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{\n   \n    \"data\": {\"name\": \"dataset\"},\n    \"width\": \"container\",\n    \"height\": \"container\",\n    \"mark\": {\n      \"type\": \"circle\",\n      \"tooltip\": true\n    },\n    \"encoding\": {\n      \"x\": {\n        \"field\": \"Month\",\n        \"type\": \"ordinal\",\n        \"axis\": {\n          \"title\": \"月份\",\n          \"labelExpr\": \"datum.value + ''月''\"\n        }\n      },\n      \"y\": {\n        \"field\": \"Year\",\n        \"type\": \"ordinal\",\n        \"sort\": \"descending\",\n        \"axis\": {\"title\": null}\n      },\n      \"color\": {\n        \"field\": \"備轉容量率_平均\",\n        \"type\": \"quantitative\",\n        \"scale\": {\n          \"type\": \"threshold\",\n          \"domain\": [6, 10],\n          \"range\": [\"#FF6600\", \"#F0C000\", \"#2CA02C\"]\n        },\n        \"legend\": {\"title\": \"備轉容量率 (%)\"}\n      },\n      \"size\": {\n        \"field\": \"低備轉天數\",\n        \"type\": \"quantitative\",\n        \"scale\": {\"range\": [30, 800]},\n        \"legend\": {\"title\": \"低備轉天數\"}\n      },\n      \"tooltip\": [\n        {\"field\": \"Year\", \"title\": \"年\"},\n        {\"field\": \"Month\", \"title\": \"月\"},\n        {\"field\": \"備轉容量率_平均\", \"title\": \"備轉容量率 (%)\", \"format\": \".1f\"},\n        {\"field\": \"低備轉天數\", \"title\": \"低備轉天數\"}\n      ]\n    }\n  }'"
+                }
+              }
+            },
+            "jsonConfig": {
+              "expr": {
+                "Literal": {
+                  "Value": "'{}'"
+                }
+              }
+            },
+            "enableTooltips": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableContextMenu": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "enableHighlight": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "enableSelection": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            },
+            "selectionMaxDataPoints": {
+              "expr": {
+                "Literal": {
+                  "Value": "50D"
+                }
+              }
+            },
+            "selectionMode": {
+              "expr": {
+                "Literal": {
+                  "Value": "'simple'"
+                }
+              }
+            },
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'6.4.1'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "stateManagement": [
+        {
+          "properties": {
+            "viewportHeight": {
+              "expr": {
+                "Literal": {
+                  "Value": "557.765237020316D"
+                }
+              }
+            },
+            "viewportWidth": {
+              "expr": {
+                "Literal": {
+                  "Value": "486.9751693002258D"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "developer": [
+        {
+          "properties": {
+            "version": {
+              "expr": {
+                "Literal": {
+                  "Value": "'1.9.0.0'"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "editor": [
+        {
+          "properties": {
+            "showViewportMarker": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "0fbefc7963ab34d9b0cb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_Date"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "Dim_Date",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 2,
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "d"
+                        }
+                      },
+                      "Property": "Year"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "2018L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

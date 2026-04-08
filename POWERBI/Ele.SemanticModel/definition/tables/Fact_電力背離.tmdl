@@ -1,0 +1,94 @@
+table Fact_電力背離
+	lineageTag: fa090000-fa09-4000-8009-fa0900000009
+
+	column YearMonth
+		dataType: int64
+		lineageTag: fa090001-fa09-4001-8009-fa0900000009
+		summarizeBy: sum
+		sourceColumn: YearMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column District
+		dataType: string
+		lineageTag: fa090002-fa09-4002-8009-fa0900000009
+		summarizeBy: none
+		sourceColumn: District
+
+		annotation SummarizationSetBy = Automatic
+
+	column PowerDeviation
+		dataType: double
+		lineageTag: fa090003-fa09-4003-8009-fa0900000009
+		summarizeBy: sum
+		sourceColumn: PowerDeviation
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Beta_TempDiff
+		dataType: double
+		lineageTag: fa090004-fa09-4004-8009-fa0900000009
+		summarizeBy: sum
+		sourceColumn: Beta_TempDiff
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column R2
+		dataType: double
+		lineageTag: fa090005-fa09-4005-8009-fa0900000009
+		summarizeBy: sum
+		sourceColumn: R2
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fa090006-fa09-4006-8009-fa0900000009
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Fact_電力背離 = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(
+				        File.Contents("C:\職訓課\Electricity_dataset\data\power_deviation.csv"),
+				        [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]
+				    ),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    TypeChanged = Table.TransformColumnTypes(Promoted, {
+				        {"YearMonth", Int64.Type},
+				        {"District", type text},
+				        {"PowerDeviation", type number},
+				        {"Beta_TempDiff", type number},
+				        {"R2", type number}
+				    }),
+				    YearAdded = Table.AddColumn(TypeChanged, "Year",
+				        each Number.IntegerDivide([YearMonth], 100), Int64.Type),
+				    MonthAdded = Table.AddColumn(YearAdded, "Month",
+				        each Number.Mod([YearMonth], 100), Int64.Type),
+				    DateAdded = Table.AddColumn(MonthAdded, "Date",
+				        each #date([Year], [Month], 1), type date),
+				    Selected = Table.SelectColumns(DateAdded,
+				        {"YearMonth", "District", "PowerDeviation",
+				         "Beta_TempDiff", "R2", "Date"})
+				in
+				    Selected
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_Id = fa090000fa0940008009fa0900000009
+
+	annotation PBI_NavigationStepName = Navigation
+
