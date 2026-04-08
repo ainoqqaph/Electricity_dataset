@@ -7,7 +7,7 @@
 # Power BI binary/cache
 *.pbix
 *.pbit
-
+POWERBI/**/.pbi/
 POWERBI/Ele.Report/
 POWERBI/screenshots/
 
