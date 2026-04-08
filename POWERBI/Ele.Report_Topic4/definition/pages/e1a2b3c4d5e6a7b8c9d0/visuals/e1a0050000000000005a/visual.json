@@ -1,0 +1,56 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "e1a0050000000000005a",
+  "position": {
+    "x": 855.78544061302682,
+    "y": 100.53639846743295,
+    "z": 4000,
+    "height": 105.44061302681992,
+    "width": 399.69348659003828,
+    "tabOrder": 4000
+  },
+  "visual": {
+    "visualType": "cardVisual",
+    "query": {
+      "queryState": {
+        "Data": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "量值表"
+                    }
+                  },
+                  "Property": "Proxy_再生能源_估算_千度"
+                }
+              },
+              "queryRef": "量值表.Proxy_再生能源_估算_千度",
+              "nativeQueryRef": "Proxy_再生能源_估算_千度"
+            }
+          ]
+        }
+      },
+      "sortDefinition": {
+        "sort": [
+          {
+            "field": {
+              "Measure": {
+                "Expression": {
+                  "SourceRef": {
+                    "Entity": "量值表"
+                  }
+                },
+                "Property": "Proxy_再生能源_估算_千度"
+              }
+            },
+            "direction": "Descending"
+          }
+        ],
+        "isDefaultSort": true
+      }
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

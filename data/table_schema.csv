@@ -1,0 +1,13 @@
+TABLE_NAME,COLUMN_NAME,DATA_TYPE
+ClimateData,YearMonth,varchar
+ClimateData,StationName,nvarchar
+ClimateData,MeanTemp,float
+ClimateData,SunshineHrs,float
+ClimateData,Precipitation,float
+
+
+TechHubPower,YearMonth,varchar
+TechHubPower,District,nvarchar
+TechHubPower,PowerUsage_100M_kWh,float
+TechHubPower,District,nvarchar
+TechHubPower,SciencePark,nvarchar

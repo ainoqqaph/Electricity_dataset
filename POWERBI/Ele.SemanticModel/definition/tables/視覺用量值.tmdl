@@ -1,0 +1,28 @@
+table 視覺用量值
+	lineageTag: 45903d76-b6ca-44e5-aa0a-44bc34efd411
+
+	measure 備轉容量率_燈號色 = ```
+			
+						SWITCH(
+						    TRUE(),
+						    [備轉容量率_月均] >= 10, "#2CA02C",
+						    [備轉容量率_月均] >= 6,  "#F0C000",
+						    "#FF6600"
+						)
+			```
+		lineageTag: 3cbd3314-75b7-4454-aa12-fb4e8bd484bf
+
+	column _description
+		lineageTag: 32ec5af4-edaf-431b-86d6-eeaa5196df2f
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [_description]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 視覺用量值 = calculated
+		mode: import
+		source = ROW("_description","顏色等" )
+
+	annotation PBI_Id = 916bf26227464e3c918682cebf2ccad5
+

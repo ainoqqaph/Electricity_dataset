@@ -1,0 +1,174 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "b61d1a6b0c3edb46083e",
+  "position": {
+    "x": 742.5,
+    "y": 0,
+    "z": 1000,
+    "height": 387.5,
+    "width": 537.5,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_TechClimate_Analytics"
+                    }
+                  },
+                  "Property": "年月"
+                }
+              },
+              "queryRef": "vw_TechClimate_Analytics.YearMonth",
+              "nativeQueryRef": "年月",
+              "active": true
+            }
+          ]
+        },
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "vw_TechClimate_Analytics"
+                    }
+                  },
+                  "Property": "年"
+                }
+              },
+              "queryRef": "vw_TechClimate_Analytics.Year",
+              "nativeQueryRef": "年"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "vw_TechClimate_Analytics"
+                        }
+                      },
+                      "Property": "高壓售電量 (億度)"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(vw_TechClimate_Analytics.PowerUsage_100M_kWh)",
+              "nativeQueryRef": "PowerUsage_100M_kWh 的平均",
+              "active": true,
+              "displayName": "電度數"
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Aggregation": {
+                  "Expression": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Entity": "vw_TechClimate_Analytics"
+                        }
+                      },
+                      "Property": "月平均氣溫 (°C)"
+                    }
+                  },
+                  "Function": 1
+                }
+              },
+              "queryRef": "Avg(vw_TechClimate_Analytics.MeanTemp)",
+              "nativeQueryRef": "MeanTemp 的平均",
+              "displayName": "平均氣溫"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "bubbles": [
+        {
+          "properties": {
+            "bubbleSize": {
+              "expr": {
+                "Literal": {
+                  "Value": "5L"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "categoryLabels": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "trend": [
+        {
+          "properties": {
+            "show": {
+              "expr": {
+                "Literal": {
+                  "Value": "true"
+                }
+              }
+            },
+            "displayName": {
+              "expr": {
+                "Literal": {
+                  "Value": "'趨勢線 1'"
+                }
+              }
+            },
+            "combineSeries": {
+              "expr": {
+                "Literal": {
+                  "Value": "false"
+                }
+              }
+            }
+          }
+        }
+      ],
+      "markers": [
+        {
+          "properties": {
+            "transparency": {
+              "expr": {
+                "Literal": {
+                  "Value": "80D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

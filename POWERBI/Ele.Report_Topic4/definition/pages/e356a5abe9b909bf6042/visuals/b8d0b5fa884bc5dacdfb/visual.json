@@ -1,0 +1,264 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "b8d0b5fa884bc5dacdfb",
+  "position": {
+    "x": 0,
+    "y": 284.44444444444446,
+    "z": 2000,
+    "height": 435.24904214559382,
+    "width": 630.191570881226,
+    "tabOrder": 2000
+  },
+  "visual": {
+    "visualType": "lineClusteredColumnComboChart",
+    "query": {
+      "queryState": {
+        "Category": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Dim_Date"
+                    }
+                  },
+                  "Property": "季節"
+                }
+              },
+              "queryRef": "Dim_Date.季節",
+              "nativeQueryRef": "季節",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "量值表"
+                    }
+                  },
+                  "Property": "風力佔比_%"
+                }
+              },
+              "queryRef": "量值表.風力佔比_%",
+              "nativeQueryRef": "風力佔比_%"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "量值表"
+                    }
+                  },
+                  "Property": "水力佔比_%"
+                }
+              },
+              "queryRef": "量值表.水力佔比_%",
+              "nativeQueryRef": "水力佔比_%"
+            },
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "量值表"
+                    }
+                  },
+                  "Property": "太陽光電佔比_%"
+                }
+              },
+              "queryRef": "量值表.太陽光電佔比_%",
+              "nativeQueryRef": "太陽光電佔比_%"
+            }
+          ]
+        },
+        "Y2": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "量值表"
+                    }
+                  },
+                  "Property": "備轉容量率_平均"
+                }
+              },
+              "queryRef": "量值表.備轉容量率_平均",
+              "nativeQueryRef": "備轉容量率_平均"
+            }
+          ]
+        }
+      }
+    },
+    "drillFilterOtherVisuals": true
+  },
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "89c309e386a6ffc0cebb",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_Date"
+              }
+            },
+            "Property": "Year"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "Dim_Date",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "d"
+                              }
+                            },
+                            "Property": "Year"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "2016L"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "2017L"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "null"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        "name": "48a9f460459bf361d2ba",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Dim_Date"
+              }
+            },
+            "Property": "季節"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "04972d5eb87a9dbbb45e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "量值表"
+              }
+            },
+            "Property": "風力佔比_%"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4a91a7c742b1c4205cf6",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "量值表"
+              }
+            },
+            "Property": "水力佔比_%"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "a029d95445435c755f7c",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "量值表"
+              }
+            },
+            "Property": "太陽光電佔比_%"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "757a1c0c6b17fed58501",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "量值表"
+              }
+            },
+            "Property": "備轉容量率_平均"
+          }
+        },
+        "type": "Advanced"
+      }
+    ]
+  }
+}

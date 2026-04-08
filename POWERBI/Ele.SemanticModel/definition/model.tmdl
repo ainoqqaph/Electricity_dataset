@@ -1,0 +1,39 @@
+model Model
+	culture: zh-TW
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: zh-TW
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation __PBI_TimeIntelligenceEnabled = 0
+
+annotation PBI_QueryOrder = ["vw_TechClimate_Analytics","vw_TechClimate_Base","Fact_備轉容量日","Fact_MOEA發電月","Fact_台電供需日","Fact_能源指標季","Fact_發購電8類年","Fact_電力密集度年","Fact_科學園區營業額","Fact_GDP生產毛額年","Fact_電力背離","Fact_TechHubPower","Fact_ClimateData_Analytics","Fact_科學園區峰值負載","Fact_製造業生產指數","Fact_科學園區用電年","Fact_園區全國用電佔比"]
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table vw_TechClimate_Analytics
+ref table vw_TechClimate_Base
+ref table 量值表
+ref table Fact_備轉容量日
+ref table Fact_MOEA發電月
+ref table Fact_台電供需日
+ref table Fact_能源指標季
+ref table Fact_發購電8類年
+ref table Fact_電力密集度年
+ref table Fact_科學園區營業額
+ref table Fact_GDP生產毛額年
+ref table Fact_電力背離
+ref table Fact_TechHubPower
+ref table Fact_ClimateData_Analytics
+ref table Fact_科學園區峰值負載
+ref table Fact_製造業生產指數
+ref table Dim_Date
+ref table 視覺用量值
+ref table Dim_科學園區
+ref table Fact_科學園區用電年
+ref table Fact_園區全國用電佔比
+ref table Dim_製造業產業
+
+ref cultureInfo zh-TW
+

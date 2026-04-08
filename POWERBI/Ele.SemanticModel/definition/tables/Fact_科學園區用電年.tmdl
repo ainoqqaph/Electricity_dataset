@@ -1,0 +1,81 @@
+table Fact_科學園區用電年
+	lineageTag: fa110000-fa11-4000-8011-fa1100000011
+
+	column 西元年
+		dataType: int64
+		lineageTag: fa110001-fa11-4001-8011-fa1100000011
+		summarizeBy: none
+		sourceColumn: 西元年
+
+		annotation SummarizationSetBy = Automatic
+
+	column 民國年
+		dataType: int64
+		lineageTag: fa110002-fa11-4002-8011-fa1100000011
+		summarizeBy: none
+		sourceColumn: 民國年
+
+		annotation SummarizationSetBy = Automatic
+
+	column 園區別
+		dataType: string
+		lineageTag: fa110003-fa11-4003-8011-fa1100000011
+		summarizeBy: none
+		sourceColumn: 園區別
+
+		annotation SummarizationSetBy = Automatic
+
+	column 子園區
+		dataType: string
+		lineageTag: fa110004-fa11-4004-8011-fa1100000011
+		summarizeBy: none
+		sourceColumn: 子園區
+
+		annotation SummarizationSetBy = Automatic
+
+	column 用電量_千度
+		dataType: double
+		lineageTag: fa110005-fa11-4005-8011-fa1100000011
+		summarizeBy: sum
+		sourceColumn: 用電量_千度
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fa110006-fa11-4006-8011-fa1100000011
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Fact_科學園區用電年 = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(
+				        File.Contents("C:\職訓課\Electricity_dataset\data\science_park_electricity_annual.csv"),
+				        [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]
+				    ),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    TypeChanged = Table.TransformColumnTypes(Promoted, {
+				        {"西元年", Int64.Type}, {"民國年", Int64.Type},
+				        {"園區別", type text}, {"子園區", type text},
+				        {"用電量_千度", type number}
+				    }),
+				    DateAdded = Table.AddColumn(TypeChanged, "Date",
+				        each #date([西元年], 1, 1), type date)
+				in
+				    DateAdded
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_Id = fa110000fa1140008011fa1100000011
+
+	annotation PBI_NavigationStepName = Navigation
+

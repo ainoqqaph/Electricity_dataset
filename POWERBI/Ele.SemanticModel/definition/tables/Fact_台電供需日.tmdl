@@ -1,0 +1,132 @@
+table Fact_台電供需日
+	lineageTag: fa030000-fa03-4000-8003-fa0300000003
+
+	column 日期
+		dataType: int64
+		lineageTag: fa030001-fa03-4001-8003-fa0300000003
+		summarizeBy: sum
+		sourceColumn: 日期
+
+		annotation SummarizationSetBy = Automatic
+
+	column 淨尖峰供電能力_萬瓩
+		dataType: double
+		lineageTag: fa030002-fa03-4002-8003-fa0300000003
+		summarizeBy: sum
+		sourceColumn: 淨尖峰供電能力_萬瓩
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 尖峰負載_萬瓩
+		dataType: double
+		lineageTag: fa030003-fa03-4003-8003-fa0300000003
+		summarizeBy: sum
+		sourceColumn: 尖峰負載_萬瓩
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 備轉容量_萬瓩
+		dataType: double
+		lineageTag: fa030004-fa03-4004-8003-fa0300000003
+		summarizeBy: sum
+		sourceColumn: 備轉容量_萬瓩
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 備轉容量率_pct
+		dataType: double
+		lineageTag: fa030005-fa03-4005-8003-fa0300000003
+		summarizeBy: sum
+		sourceColumn: 備轉容量率_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 工業用電_百萬度
+		dataType: double
+		lineageTag: fa030006-fa03-4006-8003-fa0300000003
+		summarizeBy: sum
+		sourceColumn: 工業用電_百萬度
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 民生用電_百萬度
+		dataType: double
+		lineageTag: fa030007-fa03-4007-8003-fa0300000003
+		summarizeBy: sum
+		sourceColumn: 民生用電_百萬度
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fa030008-fa03-4008-8003-fa0300000003
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Fact_台電供需日 = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(
+				        File.Contents("C:\職訓課\Electricity_dataset\data\台灣電力公司過去電力供需資訊.csv"),
+				        [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]
+				    ),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Selected = Table.SelectColumns(Promoted, {
+				        "日期",
+				        "淨尖峰供電能力(萬瓩)",
+				        "尖峰負載(萬瓩)",
+				        "備轉容量(萬瓩)",
+				        "備轉容量率(%)",
+				        "工業用電(百萬度)",
+				        "民生用電(百萬度)"
+				    }),
+				    TypeChanged = Table.TransformColumnTypes(Selected, {
+				        {"日期", Int64.Type},
+				        {"淨尖峰供電能力(萬瓩)", type number},
+				        {"尖峰負載(萬瓩)", type number},
+				        {"備轉容量(萬瓩)", type number},
+				        {"備轉容量率(%)", type number},
+				        {"工業用電(百萬度)", type number},
+				        {"民生用電(百萬度)", type number}
+				    }),
+				    Renamed = Table.RenameColumns(TypeChanged, {
+				        {"淨尖峰供電能力(萬瓩)", "淨尖峰供電能力_萬瓩"},
+				        {"尖峰負載(萬瓩)", "尖峰負載_萬瓩"},
+				        {"備轉容量(萬瓩)", "備轉容量_萬瓩"},
+				        {"備轉容量率(%)", "備轉容量率_pct"},
+				        {"工業用電(百萬度)", "工業用電_百萬度"},
+				        {"民生用電(百萬度)", "民生用電_百萬度"}
+				    }),
+				    DateAdded = Table.AddColumn(Renamed, "Date",
+				        each #date(
+				            Number.IntegerDivide([日期], 10000),
+				            Number.IntegerDivide(Number.Mod([日期], 10000), 100),
+				            Number.Mod([日期], 100)
+				        ), type date)
+				in
+				    DateAdded
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_Id = fa030000fa0340008003fa0300000003
+
+	annotation PBI_NavigationStepName = Navigation
+

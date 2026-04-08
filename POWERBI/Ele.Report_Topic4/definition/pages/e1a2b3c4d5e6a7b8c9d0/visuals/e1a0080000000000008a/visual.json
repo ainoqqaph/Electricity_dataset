@@ -1,0 +1,51 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "e1a0080000000000008a",
+  "position": {
+    "x": 780,
+    "y": 522,
+    "z": 6000,
+    "height": 174,
+    "width": 476,
+    "tabOrder": 6000
+  },
+  "visual": {
+    "visualType": "textbox",
+    "objects": {
+      "general": [
+        {
+          "properties": {
+            "paragraphs": [
+              {
+                "textRuns": [
+                  {
+                    "value": "⚠ 估算說明",
+                    "textStyle": {
+                      "fontSize": "11pt",
+                      "color": "#8b4513"
+                    }
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": "本頁所示之電源組成為「Proxy 估算」：以全國發電結構比例（來源：MOEA 月發電統計）乘以各子園區年用電量推算。"
+                  }
+                ]
+              },
+              {
+                "textRuns": [
+                  {
+                    "value": ""
+                  }
+                ]
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

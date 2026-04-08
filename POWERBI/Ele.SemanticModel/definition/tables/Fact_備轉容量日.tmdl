@@ -1,0 +1,93 @@
+table Fact_備轉容量日
+	lineageTag: fa010000-fa01-4000-8001-fa0100000001
+
+	column 西元年
+		dataType: int64
+		lineageTag: fa010001-fa01-4001-8001-fa0100000001
+		summarizeBy: sum
+		sourceColumn: 西元年
+
+		annotation SummarizationSetBy = Automatic
+
+	column 月
+		dataType: int64
+		lineageTag: fa010002-fa01-4002-8001-fa0100000001
+		summarizeBy: sum
+		sourceColumn: 月
+
+		annotation SummarizationSetBy = Automatic
+
+	column 日
+		dataType: int64
+		lineageTag: fa010003-fa01-4003-8001-fa0100000001
+		summarizeBy: sum
+		sourceColumn: 日
+
+		annotation SummarizationSetBy = Automatic
+
+	column 峰値負載_MW
+		dataType: double
+		lineageTag: fa010004-fa01-4004-8001-fa0100000001
+		summarizeBy: sum
+		sourceColumn: 峰値負載_MW
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 備轉容量_MW
+		dataType: double
+		lineageTag: fa010005-fa01-4005-8001-fa0100000001
+		summarizeBy: sum
+		sourceColumn: 備轉容量_MW
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 備轉容量率_pct
+		dataType: double
+		lineageTag: fa010006-fa01-4006-8001-fa0100000001
+		summarizeBy: sum
+		sourceColumn: 備轉容量率_pct
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fa010007-fa01-4007-8001-fa0100000001
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Fact_備轉容量日 = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(
+				        File.Contents("C:\職訓課\Electricity_dataset\data\daily_operating_reserve.csv"),
+				        [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]
+				    ),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    TypeChanged = Table.TransformColumnTypes(Promoted, {
+				        {"西元年", Int64.Type}, {"月", Int64.Type}, {"日", Int64.Type},
+				        {"峰値負載_MW", type number}, {"備轉容量_MW", type number},
+				        {"備轉容量率_pct", type number}
+				    }),
+				    DateAdded = Table.AddColumn(TypeChanged, "Date",
+				        each #date([西元年], [月], [日]), type date)
+				in
+				    DateAdded
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_Id = fa010000fa0140008001fa0100000001
+
+	annotation PBI_NavigationStepName = Navigation
+

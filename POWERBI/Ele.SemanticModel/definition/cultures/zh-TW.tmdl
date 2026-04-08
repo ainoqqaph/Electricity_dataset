@@ -1,0 +1,2262 @@
+cultureInfo zh-TW
+
+	linguisticMetadata =
+			{
+			  "Version": "4.1.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "vw_tech_climate_analytics": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_TechClimate_Analytics"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "vw tech climate analytics": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "vw_TechClimate_Analytics": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "analytics": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "climate analytics": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "tech climate analytics": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_analytics.year_month": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_TechClimate_Analytics",
+			          "ConceptualProperty": "年月"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "year month": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "YearMonth": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "year mth": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "yr month": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_analytics.district": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_TechClimate_Analytics",
+			          "ConceptualProperty": "產業地區"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "district": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "region": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "constituency": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "locality": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "area": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "quarter": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "borough": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "ward": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "neighborhood": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "canton": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_analytics.power_usage_100M_k_wh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_TechClimate_Analytics",
+			          "ConceptualProperty": "高壓售電量 (億度)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "power usage 100M k wh": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "PowerUsage_100M_kWh": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_analytics.station_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_TechClimate_Analytics",
+			          "ConceptualProperty": "觀測站"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "station name": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "StationName": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "station": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "station nickname": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "station title": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "station label": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "station tag": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "location": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "situation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "status": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "position": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "place": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "post": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_analytics.mean_temp": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_TechClimate_Analytics",
+			          "ConceptualProperty": "月平均氣溫 (°C)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "mean temp": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "MeanTemp": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "temp": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "mean fill-in": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "mean stand-in": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "fill-in": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "stand-in": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_analytics.sunshine_hrs": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_TechClimate_Analytics",
+			          "ConceptualProperty": "總日照時數 (小時)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "sunshine hrs": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "SunshineHrs": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_analytics.temp_diff": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_TechClimate_Analytics",
+			          "ConceptualProperty": "氣溫月增減量"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "temp diff": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Temp_Diff": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "diff": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_analytics.power_diff": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_TechClimate_Analytics",
+			          "ConceptualProperty": "用電月增減量"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "power diff": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Power_Diff": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "diff": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_base": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_TechClimate_Base"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "vw tech climate base": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "vw_TechClimate_Base": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "base": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "climate base": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "tech climate base": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "vw tech climate headquarters": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.474
+			          }
+			        },
+			        {
+			          "vw tech climate center": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.474
+			          }
+			        },
+			        {
+			          "vw tech climate seat": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.474
+			          }
+			        },
+			        {
+			          "vw tech climate station": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.474
+			          }
+			        },
+			        {
+			          "tech climate headquarters": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.468
+			          }
+			        },
+			        {
+			          "tech climate center": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.468
+			          }
+			        },
+			        {
+			          "tech climate seat": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.468
+			          }
+			        },
+			        {
+			          "tech climate station": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.468
+			          }
+			        },
+			        {
+			          "vw tech climate pier": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.464
+			          }
+			        },
+			        {
+			          "climate headquarters": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.461
+			          }
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_base.year_month": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_TechClimate_Base",
+			          "ConceptualProperty": "年月"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "year month": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "YearMonth": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "year mth": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.75
+			          }
+			        },
+			        {
+			          "yr month": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.6
+			          }
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_base.district": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_TechClimate_Base",
+			          "ConceptualProperty": "產業地區"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "district": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "region": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "constituency": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "locality": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "area": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "quarter": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "borough": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "ward": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "neighborhood": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "canton": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_base.power_usage_100M_k_wh": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_TechClimate_Base",
+			          "ConceptualProperty": "高壓售電量 (億度)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "power usage 100M k wh": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "PowerUsage_100M_kWh": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_base.station_name": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_TechClimate_Base",
+			          "ConceptualProperty": "觀測站"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "station name": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "StationName": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "station": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "station nickname": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "station title": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "station label": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "station tag": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.727
+			          }
+			        },
+			        {
+			          "location": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "situation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "status": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "position": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "place": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "post": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_base.mean_temp": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_TechClimate_Base",
+			          "ConceptualProperty": "月平均氣溫 (°C)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "mean temp": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "MeanTemp": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "temp": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "mean fill-in": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "mean stand-in": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.485
+			          }
+			        },
+			        {
+			          "fill-in": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "stand-in": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_base.sunshine_hrs": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "vw_TechClimate_Base",
+			          "ConceptualProperty": "總日照時數 (小時)"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "sunshine hrs": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "SunshineHrs": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        }
+			      ]
+			    },
+			    "量值表": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "量值表"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "量值表": {
+			            "State": "Generated"
+			          }
+			        }
+			      ]
+			    },
+			    "量值表.column": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "量值表",
+			          "ConceptualProperty": "column"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "column": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "pilaster": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "pier": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        },
+			        {
+			          "pillar": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "post": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "support": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "stake": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "pole": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "buttress": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "underpinning": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.476
+			          }
+			        },
+			        {
+			          "contribution": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.466
+			          }
+			        }
+			      ]
+			    },
+			    "量值表.AI_baseline_load": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "量值表",
+			          "ConceptualProperty": "AI 產業固定耗電量"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "AI baseline load": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "AI_Baseline_Load": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "load": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "baseline load": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "ai baseline cargo": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "ai baseline consignment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "ai baseline shipment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "baseline cargo": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "baseline consignment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "baseline shipment": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "ai baseline weight": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "ai baseline freight": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "ai baseline burden": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "ai baseline capacity": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        }
+			      ]
+			    },
+			    "量值表.power_temp_elasticity": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "量值表",
+			          "ConceptualProperty": "電力與氣溫變動規律"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "power temp elasticity": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Power_Temp_Elasticity": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "elasticity": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "temp elasticity": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "power temp bounciness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "power temp springiness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "power temp resistance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "power temp pliability": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "temp bounciness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "temp springiness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "temp resistance": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "temp pliability": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "power temp give": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "bounciness": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.491
+			          }
+			        }
+			      ]
+			    },
+			    "量值表.base_load_ratio": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "量值表",
+			          "ConceptualProperty": "AI 佔總用電量的百分比"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "base load ratio": {
+			            "State": "Generated"
+			          }
+			        },
+			        {
+			          "Base_Load_Ratio": {
+			            "Type": "Noun",
+			            "State": "Generated",
+			            "Weight": 0.99
+			          }
+			        },
+			        {
+			          "ratio": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "load ratio": {
+			            "State": "Generated",
+			            "Weight": 0.97
+			          }
+			        },
+			        {
+			          "base load relation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "base load percentage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "base load quotient": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "base load relationship": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.508
+			          }
+			        },
+			        {
+			          "load relation": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "load percentage": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "load quotient": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "load relationship": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.5
+			          }
+			        },
+			        {
+			          "base load proportion": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        },
+			        {
+			          "base load share": {
+			            "Type": "Noun",
+			            "State": "Suggested",
+			            "Source": {
+			              "Agent": "Thesaurus"
+			            },
+			            "Weight": 0.492
+			          }
+			        }
+			      ]
+			    }
+			  },
+			  "Relationships": {
+			    "vw_tech_climate_analytics_has_量值表_base_load_ratio": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_TechClimate_Analytics"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_tech_climate_analytics": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_analytics"
+			          }
+			        },
+			        "量值表.base_load_ratio": {
+			          "Target": {
+			            "Entity": "量值表.base_load_ratio"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_tech_climate_analytics"
+			            },
+			            "Object": {
+			              "Role": "量值表.base_load_ratio"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_tech_climate_analytics_have_base_load_ratio"
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_analytics_has_量值表_power_temp_elasticity": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_TechClimate_Analytics"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_tech_climate_analytics": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_analytics"
+			          }
+			        },
+			        "量值表.power_temp_elasticity": {
+			          "Target": {
+			            "Entity": "量值表.power_temp_elasticity"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_tech_climate_analytics"
+			            },
+			            "Object": {
+			              "Role": "量值表.power_temp_elasticity"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_tech_climate_analytics_have_power_temp_elasticity"
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_analytics_has_量值表_AI_baseline_load": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_TechClimate_Analytics"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_tech_climate_analytics": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_analytics"
+			          }
+			        },
+			        "量值表.AI_baseline_load": {
+			          "Target": {
+			            "Entity": "量值表.AI_baseline_load"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_tech_climate_analytics"
+			            },
+			            "Object": {
+			              "Role": "量值表.AI_baseline_load"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_tech_climate_analytics_have_AI_baseline_load"
+			        }
+			      ]
+			    },
+			    "量值表_has_column": {
+			      "Binding": {
+			        "ConceptualEntity": "量值表"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "量值表": {
+			          "Target": {
+			            "Entity": "量值表"
+			          }
+			        },
+			        "量值表.column": {
+			          "Target": {
+			            "Entity": "量值表.column"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "量值表"
+			            },
+			            "Object": {
+			              "Role": "量值表.column"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "量值表_have_columns"
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_base_has_sunshine_hrs": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_TechClimate_Base"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_tech_climate_base": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_base"
+			          }
+			        },
+			        "vw_tech_climate_base.sunshine_hrs": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_base.sunshine_hrs"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_tech_climate_base"
+			            },
+			            "Object": {
+			              "Role": "vw_tech_climate_base.sunshine_hrs"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_tech_climate_bases_have_sunshine_hrses"
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_base_has_mean_temp": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_TechClimate_Base"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_tech_climate_base": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_base"
+			          }
+			        },
+			        "vw_tech_climate_base.mean_temp": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_base.mean_temp"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_tech_climate_base"
+			            },
+			            "Object": {
+			              "Role": "vw_tech_climate_base.mean_temp"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_tech_climate_bases_have_mean_temps"
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_base_has_station_name": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_TechClimate_Base"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_tech_climate_base": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_base"
+			          }
+			        },
+			        "vw_tech_climate_base.station_name": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_base.station_name"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_tech_climate_base"
+			            },
+			            "Object": {
+			              "Role": "vw_tech_climate_base.station_name"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_tech_climate_bases_have_station_names"
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_base_has_power_usage_100M_k_wh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_TechClimate_Base"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_tech_climate_base": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_base"
+			          }
+			        },
+			        "vw_tech_climate_base.power_usage_100M_k_wh": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_base.power_usage_100M_k_wh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_tech_climate_base"
+			            },
+			            "Object": {
+			              "Role": "vw_tech_climate_base.power_usage_100M_k_wh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_tech_climate_bases_have_power_usage_100M_k_whs"
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_base_has_district": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_TechClimate_Base"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_tech_climate_base": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_base"
+			          }
+			        },
+			        "vw_tech_climate_base.district": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_base.district"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_tech_climate_base"
+			            },
+			            "Object": {
+			              "Role": "vw_tech_climate_base.district"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_tech_climate_bases_have_districts"
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_base_has_year_month": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_TechClimate_Base"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_tech_climate_base": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_base"
+			          }
+			        },
+			        "vw_tech_climate_base.year_month": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_base.year_month"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_tech_climate_base"
+			            },
+			            "Object": {
+			              "Role": "vw_tech_climate_base.year_month"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_tech_climate_bases_have_year_months"
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_analytics_has_power_diff": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_TechClimate_Analytics"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_tech_climate_analytics": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_analytics"
+			          }
+			        },
+			        "vw_tech_climate_analytics.power_diff": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_analytics.power_diff"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_tech_climate_analytics"
+			            },
+			            "Object": {
+			              "Role": "vw_tech_climate_analytics.power_diff"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_tech_climate_analytics_have_power_diffs"
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_analytics_has_temp_diff": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_TechClimate_Analytics"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_tech_climate_analytics": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_analytics"
+			          }
+			        },
+			        "vw_tech_climate_analytics.temp_diff": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_analytics.temp_diff"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_tech_climate_analytics"
+			            },
+			            "Object": {
+			              "Role": "vw_tech_climate_analytics.temp_diff"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_tech_climate_analytics_have_temp_diffs"
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_analytics_has_sunshine_hrs": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_TechClimate_Analytics"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_tech_climate_analytics": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_analytics"
+			          }
+			        },
+			        "vw_tech_climate_analytics.sunshine_hrs": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_analytics.sunshine_hrs"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_tech_climate_analytics"
+			            },
+			            "Object": {
+			              "Role": "vw_tech_climate_analytics.sunshine_hrs"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_tech_climate_analytics_have_sunshine_hrses"
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_analytics_has_mean_temp": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_TechClimate_Analytics"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_tech_climate_analytics": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_analytics"
+			          }
+			        },
+			        "vw_tech_climate_analytics.mean_temp": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_analytics.mean_temp"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_tech_climate_analytics"
+			            },
+			            "Object": {
+			              "Role": "vw_tech_climate_analytics.mean_temp"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_tech_climate_analytics_have_mean_temps"
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_analytics_has_station_name": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_TechClimate_Analytics"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_tech_climate_analytics": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_analytics"
+			          }
+			        },
+			        "vw_tech_climate_analytics.station_name": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_analytics.station_name"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_tech_climate_analytics"
+			            },
+			            "Object": {
+			              "Role": "vw_tech_climate_analytics.station_name"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_tech_climate_analytics_have_station_names"
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_analytics_has_power_usage_100M_k_wh": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_TechClimate_Analytics"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_tech_climate_analytics": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_analytics"
+			          }
+			        },
+			        "vw_tech_climate_analytics.power_usage_100M_k_wh": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_analytics.power_usage_100M_k_wh"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_tech_climate_analytics"
+			            },
+			            "Object": {
+			              "Role": "vw_tech_climate_analytics.power_usage_100M_k_wh"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_tech_climate_analytics_have_power_usage_100M_k_whs"
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_analytics_has_district": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_TechClimate_Analytics"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_tech_climate_analytics": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_analytics"
+			          }
+			        },
+			        "vw_tech_climate_analytics.district": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_analytics.district"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_tech_climate_analytics"
+			            },
+			            "Object": {
+			              "Role": "vw_tech_climate_analytics.district"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_tech_climate_analytics_have_districts"
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_analytics_has_year_month": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_TechClimate_Analytics"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_tech_climate_analytics": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_analytics"
+			          }
+			        },
+			        "vw_tech_climate_analytics.year_month": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_analytics.year_month"
+			          }
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Attribute": {
+			            "Subject": {
+			              "Role": "vw_tech_climate_analytics"
+			            },
+			            "Object": {
+			              "Role": "vw_tech_climate_analytics.year_month"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_tech_climate_analytics_have_year_months"
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_base_in_district": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_TechClimate_Base"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_tech_climate_base": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_base"
+			          }
+			        },
+			        "vw_tech_climate_base.district": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_base.district"
+			          }
+			        }
+			      },
+			      "SemanticSlots": {
+			        "Where": {
+			          "Role": "vw_tech_climate_base.district"
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "vw_tech_climate_base"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "vw_tech_climate_base.district"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_tech_climate_bases_are_in_districts"
+			        }
+			      ]
+			    },
+			    "vw_tech_climate_analytics_in_district": {
+			      "Binding": {
+			        "ConceptualEntity": "vw_TechClimate_Analytics"
+			      },
+			      "State": "Generated",
+			      "Roles": {
+			        "vw_tech_climate_analytics": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_analytics"
+			          }
+			        },
+			        "vw_tech_climate_analytics.district": {
+			          "Target": {
+			            "Entity": "vw_tech_climate_analytics.district"
+			          }
+			        }
+			      },
+			      "SemanticSlots": {
+			        "Where": {
+			          "Role": "vw_tech_climate_analytics.district"
+			        }
+			      },
+			      "Phrasings": [
+			        {
+			          "Preposition": {
+			            "Subject": {
+			              "Role": "vw_tech_climate_analytics"
+			            },
+			            "Prepositions": [
+			              {
+			                "in": {
+			                  "State": "Generated"
+			                }
+			              }
+			            ],
+			            "Object": {
+			              "Role": "vw_tech_climate_analytics.district"
+			            }
+			          },
+			          "State": "Generated",
+			          "Weight": 0.99,
+			          "ID": "vw_tech_climate_analytics_are_in_districts"
+			        }
+			      ]
+			    }
+			  },
+			  "Agents": {
+			    "Internal": {
+			      "Version": "1.1.0"
+			    }
+			  }
+			}
+		contentType: json
+

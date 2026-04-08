@@ -1,0 +1,127 @@
+table Fact_ClimateData_Analytics
+	lineageTag: fa0b0000-fa0b-4000-800b-fa0b0000000b
+
+	column YearMonth
+		dataType: int64
+		lineageTag: fa0b0001-fa0b-4001-800b-fa0b0000000b
+		summarizeBy: sum
+		sourceColumn: YearMonth
+
+		annotation SummarizationSetBy = Automatic
+
+	column District
+		dataType: string
+		lineageTag: fa0b0002-fa0b-4002-800b-fa0b0000000b
+		summarizeBy: none
+		sourceColumn: District
+
+		annotation SummarizationSetBy = Automatic
+
+	column PowerUsage_100M_kWh
+		dataType: double
+		lineageTag: fa0b0003-fa0b-4003-800b-fa0b0000000b
+		summarizeBy: sum
+		sourceColumn: PowerUsage_100M_kWh
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column StationName
+		dataType: string
+		lineageTag: fa0b0004-fa0b-4004-800b-fa0b0000000b
+		summarizeBy: none
+		sourceColumn: StationName
+
+		annotation SummarizationSetBy = Automatic
+
+	column MeanTemp
+		dataType: double
+		lineageTag: fa0b0005-fa0b-4005-800b-fa0b0000000b
+		summarizeBy: sum
+		sourceColumn: MeanTemp
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SunshineHrs
+		dataType: double
+		lineageTag: fa0b0006-fa0b-4006-800b-fa0b0000000b
+		summarizeBy: sum
+		sourceColumn: SunshineHrs
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Temp_Diff
+		dataType: double
+		lineageTag: fa0b0007-fa0b-4007-800b-fa0b0000000b
+		summarizeBy: sum
+		sourceColumn: Temp_Diff
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Power_Diff
+		dataType: double
+		lineageTag: fa0b0008-fa0b-4008-800b-fa0b0000000b
+		summarizeBy: sum
+		sourceColumn: Power_Diff
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fa0b0009-fa0b-4009-800b-fa0b0000000b
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Fact_ClimateData_Analytics = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(
+				        File.Contents("C:\職訓課\Electricity_dataset\data\前一千筆_vw_TechClimate_Analytics.csv"),
+				        [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]
+				    ),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    TypeChanged = Table.TransformColumnTypes(Promoted, {
+				        {"YearMonth", Int64.Type},
+				        {"District", type text},
+				        {"PowerUsage_100M_kWh", type number},
+				        {"StationName", type text},
+				        {"MeanTemp", type number},
+				        {"SunshineHrs", type number},
+				        {"Temp_Diff", type number},
+				        {"Power_Diff", type number}
+				    }),
+				    NullFiltered = Table.ReplaceValue(TypeChanged, "NULL", null,
+				        Replacer.ReplaceValue, {"Temp_Diff", "Power_Diff"}),
+				    YearAdded = Table.AddColumn(NullFiltered, "Year",
+				        each Number.IntegerDivide([YearMonth], 100), Int64.Type),
+				    MonthAdded = Table.AddColumn(YearAdded, "Month",
+				        each Number.Mod([YearMonth], 100), Int64.Type),
+				    DateAdded = Table.AddColumn(MonthAdded, "Date",
+				        each #date([Year], [Month], 1), type date),
+				    Selected = Table.SelectColumns(DateAdded,
+				        {"YearMonth", "District", "PowerUsage_100M_kWh", "StationName",
+				         "MeanTemp", "SunshineHrs", "Temp_Diff", "Power_Diff", "Date"})
+				in
+				    Selected
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_Id = fa0b0000fa0b4000800bfa0b0000000b
+
+	annotation PBI_NavigationStepName = Navigation
+

@@ -1,0 +1,87 @@
+table Fact_GDP生產毛額年
+	lineageTag: fa080000-fa08-4000-8008-fa0800000008
+
+	column 西元年
+		dataType: int64
+		lineageTag: fa080001-fa08-4001-8008-fa0800000008
+		summarizeBy: sum
+		sourceColumn: 西元年
+
+		annotation SummarizationSetBy = Automatic
+
+	column 行業代碼
+		dataType: string
+		lineageTag: fa080002-fa08-4002-8008-fa0800000008
+		summarizeBy: none
+		sourceColumn: 行業代碼
+
+		annotation SummarizationSetBy = Automatic
+
+	column 行業名稱
+		dataType: string
+		lineageTag: fa080003-fa08-4003-8008-fa0800000008
+		summarizeBy: none
+		sourceColumn: 行業名稱
+
+		annotation SummarizationSetBy = Automatic
+
+	column GDP_當期_百萬元
+		dataType: double
+		lineageTag: fa080004-fa08-4004-8008-fa0800000008
+		summarizeBy: sum
+		sourceColumn: GDP_當期_百萬元
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column GDP_連鎖實質_百萬元
+		dataType: double
+		lineageTag: fa080005-fa08-4005-8008-fa0800000008
+		summarizeBy: sum
+		sourceColumn: GDP_連鎖實質_百萬元
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fa080006-fa08-4006-8008-fa0800000008
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Fact_GDP生產毛額年 = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(
+				        File.Contents("C:\職訓課\Electricity_dataset\data\dgbas_gdp_production_annual.csv"),
+				        [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]
+				    ),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    TypeChanged = Table.TransformColumnTypes(Promoted, {
+				        {"西元年", Int64.Type},
+				        {"行業代碼", type text}, {"行業名稱", type text},
+				        {"GDP_當期_百萬元", type number},
+				        {"GDP_連鎖實質_百萬元", type number}
+				    }),
+				    DateAdded = Table.AddColumn(TypeChanged, "Date",
+				        each #date([西元年], 1, 1), type date),
+				    Selected = Table.SelectColumns(DateAdded,
+				        {"西元年", "行業代碼", "行業名稱", "GDP_當期_百萬元",
+				         "GDP_連鎖實質_百萬元", "Date"})
+				in
+				    Selected
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_Id = fa080000fa0840008008fa0800000008
+
+	annotation PBI_NavigationStepName = Navigation
+

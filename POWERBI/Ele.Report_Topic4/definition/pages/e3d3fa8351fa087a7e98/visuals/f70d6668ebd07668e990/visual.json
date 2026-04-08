@@ -1,0 +1,108 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.5.0/schema.json",
+  "name": "f70d6668ebd07668e990",
+  "position": {
+    "x": 9.8969072164948457,
+    "y": 287.01030927835052,
+    "z": 1000,
+    "height": 304.94845360824741,
+    "width": 574.020618556701,
+    "tabOrder": 1000
+  },
+  "visual": {
+    "visualType": "scatterChart",
+    "query": {
+      "queryState": {
+        "Series": {
+          "projections": [
+            {
+              "field": {
+                "Column": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "Fact_電力密集度年"
+                    }
+                  },
+                  "Property": "行業別"
+                }
+              },
+              "queryRef": "Fact_電力密集度年.行業別",
+              "nativeQueryRef": "行業別"
+            }
+          ]
+        },
+        "Size": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "量值表"
+                    }
+                  },
+                  "Property": "電力密集度_GDP_百萬元"
+                }
+              },
+              "queryRef": "量值表.電力密集度_GDP_百萬元",
+              "nativeQueryRef": "電力密集度_GDP_百萬元"
+            }
+          ]
+        },
+        "X": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "量值表"
+                    }
+                  },
+                  "Property": "用電份額%"
+                }
+              },
+              "queryRef": "量值表.用電份額%",
+              "nativeQueryRef": "用電份額%",
+              "active": true
+            }
+          ]
+        },
+        "Y": {
+          "projections": [
+            {
+              "field": {
+                "Measure": {
+                  "Expression": {
+                    "SourceRef": {
+                      "Entity": "量值表"
+                    }
+                  },
+                  "Property": "GDP份額%"
+                }
+              },
+              "queryRef": "量值表.GDP份額%",
+              "nativeQueryRef": "GDP份額%"
+            }
+          ]
+        }
+      }
+    },
+    "objects": {
+      "valueAxis": [
+        {
+          "properties": {
+            "end": {
+              "expr": {
+                "Literal": {
+                  "Value": "0.8D"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "drillFilterOtherVisuals": true
+  }
+}

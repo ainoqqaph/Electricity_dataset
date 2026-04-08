@@ -1,0 +1,83 @@
+table Fact_科學園區峰值負載
+	lineageTag: fa0c0000-fa0c-4000-800c-fa0c0000000c
+
+	column 西元年
+		dataType: int64
+		lineageTag: fa0c0001-fa0c-4001-800c-fa0c0000000c
+		summarizeBy: sum
+		sourceColumn: 西元年
+
+		annotation SummarizationSetBy = Automatic
+
+	column 月
+		dataType: int64
+		lineageTag: fa0c0002-fa0c-4002-800c-fa0c0000000c
+		summarizeBy: sum
+		sourceColumn: 月
+
+		annotation SummarizationSetBy = Automatic
+
+	column 園區別
+		dataType: string
+		lineageTag: fa0c0003-fa0c-4003-800c-fa0c0000000c
+		summarizeBy: none
+		sourceColumn: 園區別
+
+		annotation SummarizationSetBy = Automatic
+
+	column 子園區
+		dataType: string
+		lineageTag: fa0c0004-fa0c-4004-800c-fa0c0000000c
+		summarizeBy: none
+		sourceColumn: 子園區
+
+		annotation SummarizationSetBy = Automatic
+
+	column 負載_萬KW
+		dataType: double
+		lineageTag: fa0c0005-fa0c-4005-800c-fa0c0000000c
+		summarizeBy: sum
+		sourceColumn: 負載_萬KW
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fa0c0006-fa0c-4006-800c-fa0c0000000c
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Fact_科學園區峰值負載 = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(
+				        File.Contents("C:\職訓課\Electricity_dataset\data\science_park_load.csv"),
+				        [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]
+				    ),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    TypeChanged = Table.TransformColumnTypes(Promoted, {
+				        {"西元年", Int64.Type}, {"月", Int64.Type},
+				        {"園區別", type text}, {"子園區", type text},
+				        {"負載_萬KW", type number}
+				    }),
+				    DateAdded = Table.AddColumn(TypeChanged, "Date",
+				        each #date([西元年], [月], 1), type date),
+				    Selected = Table.SelectColumns(DateAdded,
+				        {"西元年", "月", "園區別", "子園區", "負載_萬KW", "Date"})
+				in
+				    Selected
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_Id = fa0c0000fa0c4000800cfa0c0000000c
+
+	annotation PBI_NavigationStepName = Navigation
+

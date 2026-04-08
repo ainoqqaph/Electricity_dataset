@@ -1,0 +1,129 @@
+table Fact_發購電8類年
+	lineageTag: fa050000-fa05-4000-8005-fa0500000005
+
+	column 年
+		dataType: int64
+		lineageTag: fa050001-fa05-4001-8005-fa0500000005
+		summarizeBy: sum
+		sourceColumn: 年
+
+		annotation SummarizationSetBy = Automatic
+
+	column 再生能源
+		dataType: double
+		lineageTag: fa050002-fa05-4002-8005-fa0500000005
+		summarizeBy: sum
+		sourceColumn: 再生能源
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 燃煤
+		dataType: double
+		lineageTag: fa050003-fa05-4003-8005-fa0500000005
+		summarizeBy: sum
+		sourceColumn: 燃煤
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 燃油
+		dataType: double
+		lineageTag: fa050004-fa05-4004-8005-fa0500000005
+		summarizeBy: sum
+		sourceColumn: 燃油
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 燃氣
+		dataType: double
+		lineageTag: fa050005-fa05-4005-8005-fa0500000005
+		summarizeBy: sum
+		sourceColumn: 燃氣
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 汽電共生
+		dataType: double
+		lineageTag: fa050006-fa05-4006-8005-fa0500000005
+		summarizeBy: sum
+		sourceColumn: 汽電共生
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 抽蓄水力
+		dataType: double
+		lineageTag: fa050007-fa05-4007-8005-fa0500000005
+		summarizeBy: sum
+		sourceColumn: 抽蓄水力
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 核能
+		dataType: double
+		lineageTag: fa050008-fa05-4008-8005-fa0500000005
+		summarizeBy: sum
+		sourceColumn: 核能
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 電池儲能
+		dataType: double
+		lineageTag: fa050009-fa05-4009-8005-fa0500000005
+		summarizeBy: sum
+		sourceColumn: 電池儲能
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fa05000a-fa05-400a-8005-fa0500000005
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Fact_發購電8類年 = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(
+				        File.Contents("C:\職訓課\Electricity_dataset\data\台電系統歷年發購電量分八類(1950-2025).csv"),
+				        [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]
+				    ),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    TypeChanged = Table.TransformColumnTypes(Promoted, {
+				        {"年", Int64.Type},
+				        {"再生能源", type number}, {"燃煤", type number},
+				        {"燃油", type number}, {"燃氣", type number},
+				        {"汽電共生", type number}, {"抽蓄水力", type number},
+				        {"核能", type number}, {"電池儲能", type number}
+				    }),
+				    DateAdded = Table.AddColumn(TypeChanged, "Date",
+				        each #date([年], 1, 1), type date)
+				in
+				    DateAdded
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_Id = fa050000fa0540008005fa0500000005
+
+	annotation PBI_NavigationStepName = Navigation
+

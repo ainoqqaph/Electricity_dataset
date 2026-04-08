@@ -1,0 +1,31 @@
+table Dim_製造業產業
+	lineageTag: da010000-da01-4000-8001-da0100000001
+
+	column 行業別
+		dataType: string
+		lineageTag: da010001-da01-4001-8001-da0100000001
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [行業別]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Dim_製造業產業 = calculated
+		mode: import
+		source =
+				DATATABLE(
+				    "行業別", STRING,
+				    {
+				        {"化學材料及肥料製造業"},
+				        {"基本金屬製造業"},
+				        {"塑膠製品製造業"},
+				        {"紙漿紙及紙製品製造業"},
+				        {"紡織成衣及服飾品製造業"},
+				        {"金屬製品製造業"},
+				        {"電子產品及電力設備製造業"},
+				        {"非金屬礦物製品製造業"}
+				    }
+				)
+
+	annotation PBI_Id = da010000da0140008001da0100000001
+

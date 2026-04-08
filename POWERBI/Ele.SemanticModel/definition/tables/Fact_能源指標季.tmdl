@@ -1,0 +1,91 @@
+table Fact_能源指標季
+	lineageTag: fa040000-fa04-4000-8004-fa0400000004
+
+	column 西元年
+		dataType: int64
+		lineageTag: fa040001-fa04-4001-8004-fa0400000004
+		summarizeBy: sum
+		sourceColumn: 西元年
+
+		annotation SummarizationSetBy = Automatic
+
+	column 季度
+		dataType: int64
+		lineageTag: fa040002-fa04-4002-8004-fa0400000004
+		summarizeBy: sum
+		sourceColumn: 季度
+
+		annotation SummarizationSetBy = Automatic
+
+	column 大類
+		dataType: string
+		lineageTag: fa040003-fa04-4003-8004-fa0400000004
+		summarizeBy: none
+		sourceColumn: 大類
+
+		annotation SummarizationSetBy = Automatic
+
+	column 指標名稱
+		dataType: string
+		lineageTag: fa040004-fa04-4004-8004-fa0400000004
+		summarizeBy: none
+		sourceColumn: 指標名稱
+
+		annotation SummarizationSetBy = Automatic
+
+	column 數值
+		dataType: double
+		lineageTag: fa040005-fa04-4005-8004-fa0400000004
+		summarizeBy: sum
+		sourceColumn: 數值
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 單位
+		dataType: string
+		lineageTag: fa040006-fa04-4006-8004-fa0400000004
+		summarizeBy: none
+		sourceColumn: 單位
+
+		annotation SummarizationSetBy = Automatic
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fa040007-fa04-4007-8004-fa0400000004
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition Fact_能源指標季 = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(
+				        File.Contents("C:\職訓課\Electricity_dataset\data\esist_energy_index.csv"),
+				        [Delimiter=",", Encoding=65001, QuoteStyle=QuoteStyle.None]
+				    ),
+				    Promoted = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    TypeChanged = Table.TransformColumnTypes(Promoted, {
+				        {"西元年", Int64.Type}, {"季度", Int64.Type},
+				        {"大類", type text}, {"指標名稱", type text},
+				        {"數值", type number}, {"單位", type text}
+				    }),
+				    DateAdded = Table.AddColumn(TypeChanged, "Date",
+				        each #date([西元年], ([季度] - 1) * 3 + 1, 1), type date),
+				    Selected = Table.SelectColumns(DateAdded,
+				        {"西元年", "季度", "大類", "指標名稱", "數值", "單位", "Date"})
+				in
+				    Selected
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_Id = fa040000fa0440008004fa0400000004
+
+	annotation PBI_NavigationStepName = Navigation
+
